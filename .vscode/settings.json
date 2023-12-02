@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "wiringpi.h": "c",
+        "cmath": "cpp"
+    }
+}

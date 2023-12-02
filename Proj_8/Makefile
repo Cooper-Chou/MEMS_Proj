@@ -1,0 +1,2 @@
+button_blink: button_blink.cpp LED_Controller.cpp LED_StateDefine.cpp bsp.cpp
+	g++ -o button_blink button_blink.cpp LED_Controller.cpp LED_StateDefine.cpp bsp.cpp LED_Controller.hpp LED_StateDefine.hpp bsp.hpp -l wiringPi
