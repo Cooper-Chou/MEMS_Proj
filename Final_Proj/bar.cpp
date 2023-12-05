@@ -71,14 +71,9 @@ void paint()
 // 主函数
 int main ()
 {
-	//初始化连接失败时，将消息打印到屏幕
-	if(wiringPiSetup() == -1)
-	{
-		printf("setup wiringPi failed !");
-		return 1; 
-	}
+	
 
-	pcf8591Setup(BASE, ADDRESS);
+	
     // 在基本引脚64上设置pcf8591，地址0x48
 	float Vbar_x = 0.0f;
 	float Vbar_y = 0.0f;

@@ -10,11 +10,7 @@ int main(void)
 	printf("Song length = %d\n", songLength);
 	for (int i = 0; i < songLength; i++)
 	{
-		printf("i = %d\n", i);
-		//	int i = 0;
-		//	scanf("%d", &i);
 		bspSetFreq(MySong[i]);
-		printf("%d\n", MySong[i]);
 		delay(BEAT);
 	}
 	pwmWrite(GPIO_BEEP, 0);
