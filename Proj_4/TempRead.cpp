@@ -36,12 +36,13 @@ int main ()
 	while(1)
 	{
 		//scanf("%d", &output);
-		Vtemp = VCC * ((float)analogRead(AI3)/255.0f);
+		Vtemp = VCC * (((float)analogRead(AI3))/255.0f);
 		Rtemp = R0 * Vtemp / (VCC - Vtemp);
 		Temp = 1/(log(Rtemp/R0)/B + 1/T0) - T0 + 25.0f;
 
 		printf("Temperature: %f°C\n", Temp);
-		// analogWrite(BASE+0,output+50);
+		analogWrite(BASE, (int)(200.0f*(Temp-20.0f)/20.0f));
+		delay(500);
 	} 
 	return 0 ;
 }

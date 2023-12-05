@@ -26,10 +26,10 @@ int main ()
 
 	while(1)
 	{
-		//scanf("%d", &output);
-		output = analogRead(AI1);
+		scanf("%d", &output);
+		//output = analogRead(AI1);
 		printf("Read: %d\n", output);
-		analogWrite(BASE+0,output+50);
+		analogWrite(BASE,output+50);
 	} 
 	return 0 ;
 }
