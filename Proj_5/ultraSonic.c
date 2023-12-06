@@ -24,20 +24,16 @@ int main()
 
 	while(1)
 	{
+		//输入一个短脉冲
 		int tick = 0;
 		digitalWrite(GPIO_TRIG, HIGH);
 		delayMicroseconds(20);
 		digitalWrite(GPIO_TRIG, LOW);
 
-		while(digitalRead(GPIO_ECHO) == LOW)
-		{
-			;
-		}
+		//测量折返时间
+		while(digitalRead(GPIO_ECHO) == LOW){;}
 		tick = micros();
-		while(digitalRead(GPIO_ECHO) == HIGH)
-		{
-			;
-		}
+		while(digitalRead(GPIO_ECHO) == HIGH){;}
 		int time = micros() - tick;
 
 		float distance = (float)time * 0.0001f  * 170.0f;

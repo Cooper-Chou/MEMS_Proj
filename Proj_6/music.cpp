@@ -13,7 +13,7 @@ int main(void)
 		bspSetFreq(MySong[i]);
 		delay(BEAT);
 	}
-	pwmWrite(GPIO_BEEP, 0);
+	pwmWrite(GPIO_BEEP, 0); //演奏结束以后关掉声音
 /*	int a = 0;
 	while(1)
 	{

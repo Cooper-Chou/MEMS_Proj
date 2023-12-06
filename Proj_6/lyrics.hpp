@@ -20,27 +20,18 @@
 #define LA_H 1760
 #define XI_H 1976
 
-
 #define SONG_LENGTH 62
 
 int MySong[SONG_LENGTH] = 
 {
-	MI_M, MI_M, MI_M, RE_M, 
-	MI_M, RE_M, MI_M, SO_M, 
-	SO_M, DO_H, DO_H, XI_M, 
-	XI_M, MI_M, MI_M, RE_M, 
-	MI_M, MI_M, MI_M, RE_M, 
-	MI_M, RE_M, MI_M, DO_H,
-	DO_H, DO_H, DO_H, XI_M, 
-	RE_H, RE_H, MI_M, MI_M, 
-	MI_M, MI_M, MI_M, RE_M,
-	MI_M, RE_M, MI_M, XI_M, 
-	XI_M, DO_H, DO_H, XI_M, 
-	XI_M, MI_M, MI_M, RE_M,
-	MI_M, MI_M, MI_M, RE_M, 
-	MI_M, RE_M, MI_M, XI_M,
-	XI_M, DO_H, DO_H, RE_H,
-	RE_H, RE_H
+	MI_M, MI_M, MI_M, RE_M,    MI_M, RE_M, MI_M, SO_M, 
+	SO_M, DO_H, DO_H, XI_M,    XI_M, MI_M, MI_M, RE_M, 
+	MI_M, MI_M, MI_M, RE_M,    MI_M, RE_M, MI_M, DO_H,
+	DO_H, DO_H, DO_H, XI_M,    RE_H, RE_H, MI_M, MI_M, 
+	MI_M, MI_M, MI_M, RE_M,    MI_M, RE_M, MI_M, XI_M, 
+	XI_M, DO_H, DO_H, XI_M,    XI_M, MI_M, MI_M, RE_M,
+	MI_M, MI_M, MI_M, RE_M,    MI_M, RE_M, MI_M, XI_M,
+	XI_M, DO_H, DO_H, RE_H,    RE_H, RE_H
 };
 
 int songLength = SONG_LENGTH;
