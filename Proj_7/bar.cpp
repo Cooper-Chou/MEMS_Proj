@@ -12,57 +12,49 @@
 #define AI3 BASE+3
 
 #define VCC 5.0f
-#define VBAR 3.3f
-#define EMOJI_WIDTH 3 /* Should be ODD !!!*/
+#define VBAR VCC
+#define EMOJI_WIDTH 5 /* Should be ODD !!!*/
 #define EMOJI_HEIGHT 3 /* Should be ODD !!!*/
 #define HALF_EMOJI_WIDTH ((EMOJI_WIDTH - 1)/2)
 #define HALF_EMOJI_HEIGHT ((EMOJI_HEIGHT - 1)/2)
-#define CONVAS_WIDTH (180 - EMOJI_WIDTH - 1)
-#define CONVAS_HEIGHT (44 - EMOJI_HEIGHT - 1)
-#define MID_CONVAS_WIDTH CONVAS_WIDTH / 2
-#define MID_CONVAS_HEIGHT CONVAS_HEIGHT / 2
+#define CONVAS_WIDTH (232)
+#define CONVAS_HEIGHT (56)
 
-static int x_coor = MID_CONVAS_WIDTH;
-static int y_coor = MID_CONVAS_HEIGHT;
+static int x_coor = CONVAS_WIDTH / 2;
+static int y_coor = CONVAS_HEIGHT / 2; 
 
-void paint()
+void paint()         
 {
-	if(x_coor < 0)
+	if(x_coor < 1 + HALF_EMOJI_WIDTH)
 	{
-		x_coor = 0;
+		x_coor = 1 + HALF_EMOJI_WIDTH;
 	}
-	else if(x_coor > CONVAS_WIDTH)
+	else if(x_coor > CONVAS_WIDTH - HALF_EMOJI_WIDTH)
 	{
-		x_coor = CONVAS_WIDTH;
+		x_coor = CONVAS_WIDTH - HALF_EMOJI_WIDTH;
 	}
-	if(y_coor < 0)
+	if(y_coor < 1 + HALF_EMOJI_HEIGHT)
 	{
-		y_coor = 0;
+		y_coor = 1 + HALF_EMOJI_HEIGHT;
 	}
-	else if(y_coor > CONVAS_HEIGHT)
+	else if(y_coor > CONVAS_HEIGHT - HALF_EMOJI_HEIGHT)
 	{
-		y_coor = CONVAS_HEIGHT;
+		y_coor = CONVAS_HEIGHT - HALF_EMOJI_HEIGHT;
 	}
-
-
-
-	for(int i = 0; i < HALF_EMOJI_HEIGHT; i++){printf("\n");}
 
 	for(int i = 0; i < y_coor - 1 - HALF_EMOJI_HEIGHT; i++)
 	{
 		printf("\n");
 	}
 
-	for(int i = 0; i < x_coor - (EMOJI_WIDTH - 1)/2  - 1; i++){printf(" ");}printf("\\|/\n");
-	for(int i = 0; i < x_coor - (EMOJI_WIDTH - 1)/2  - 1; i++){printf(" ");}printf("TAT\n");
-	for(int i = 0; i < x_coor - (EMOJI_WIDTH - 1)/2  - 1; i++){printf(" ");}printf("/|\\\n");
+	for(int i = 0; i < x_coor - HALF_EMOJI_WIDTH - 1; i++){printf(" ");}printf("\\-|-/\n");
+	for(int i = 0; i < x_coor - HALF_EMOJI_WIDTH - 1; i++){printf(" ");}printf("*TAT*\n");
+	for(int i = 0; i < x_coor - HALF_EMOJI_WIDTH - 1; i++){printf(" ");}printf("/-|-\\\n");
 
-	for(int i = 0; i < CONVAS_HEIGHT - y_coor; i++)
+	for(int i = 0; i < CONVAS_HEIGHT - HALF_EMOJI_HEIGHT - y_coor; i++)
 	{
 		printf("\n");
 	}
-
-	//for(int i = 0; i < HALF_EMOJI_HEIGHT; i++){printf("\n");}
 }
 
 

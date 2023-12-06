@@ -26,7 +26,7 @@
 
 #define SONG_LENGTH 62
 
-int MySong[SONG_LENGTH] = 
+int MySong[] = 
 {
 	MI_M, MI_M, MI_M, RE_M, 
 	MI_M, RE_M, MI_M, SO_M, 

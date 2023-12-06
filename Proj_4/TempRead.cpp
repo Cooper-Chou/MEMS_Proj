@@ -42,7 +42,7 @@ int main ()
 
 		printf("Temperature: %f°C\n", Temp);
 		analogWrite(BASE, (int)(200.0f*(Temp-20.0f)/20.0f));
-		delay(500);
+		delay(200);
 	} 
 	return 0 ;
 }

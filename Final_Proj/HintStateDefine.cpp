@@ -1,5 +1,5 @@
 #include "HintStateDefine.hpp"
-#include "HintController.hpp"
+#include "AttackController.hpp"
 #include "bsp.hpp"
 #include "lyrics.hpp"
 #include <stdio.h>
@@ -22,19 +22,6 @@ void State_RedBlink::Execute()
 void State_RedBlink::Exit(){;}
 
 
-void State_RedOn::Init(){;}
-void State_RedOn::Enter()
-{
-    bspLedOff(GPIO_GREEN);
-    bspLedOff(GPIO_BLUE);
-}
-void State_RedOn::Execute()
-{
-    bspLedOn(GPIO_RED);
-}
-void State_RedOn::Exit(){;}
-
-
 void State_BlueBlink::Init()
 {
     blink_period = MAX_LED_BLINK_PERIOD;
@@ -53,18 +40,26 @@ void State_BlueBlink::Execute()
 void State_BlueBlink::Exit(){;}
 
 
-void State_BlueOn::Init(){;}
-void State_BlueOn::Enter()
+void State_Off::Init(){;}
+void State_Off::Enter()
 { 
     bspLedOff(GPIO_RED);
     bspLedOff(GPIO_GREEN);
+    bspLedOff(GPIO_BLUE);
 }
-void State_BlueOn::Execute()
-{
-  
+void State_Off::Execute(){;}
+void State_Off::Exit(){;}
+
+
+void State_PurpleOn::Init(){;}
+void State_PurpleOn::Enter()
+{ 
+    bspLedOn(GPIO_RED);
+    bspLedOff(GPIO_GREEN);
     bspLedOn(GPIO_BLUE);
 }
-void State_BlueOn::Exit(){;}
+void State_PurpleOn::Execute(){;}
+void State_PurpleOn::Exit(){;}
 
 
 void State_GameEnding::Init()

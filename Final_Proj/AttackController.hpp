@@ -1,42 +1,27 @@
-#ifndef HintController_HPP
-#define HintController_HPP
+#ifndef AttackController_HPP
+#define AttackController_HPP
 
-#include <StateMachine.hpp>
 #include <stdio.h>
 #include <stdint.h>
 #include "bsp.hpp"
-#include "LED_StateDefine.hpp"
 #include "Controller.hpp"
 
-#define LED_STATE_UPDATE_PERIOD 2 /*ms*/
-#define BUTTON_DELAY 100 /*ms*/
+#define BUTTON_DELAY 20 /*ms*/
 
-class HintStateMachine : public StateMachine
+class AttackController : public Controller
 {
     public:
-        HintStateMachine():StateMachine()
-        {
-            this->Init();
-        }
-        
-        virtual void Init();
-};
-
-class HintController : public Controller
-{
-    public:
-    static unsigned int last_millis;
     static unsigned int current_millis;
     static unsigned int last_btn_millis;
-    static uint8_t press_count;
-    HintStateMachine hint_state_machine;
+    HintStateMachine Attack_state_machine;
 
-    HintController():hint_state_machine()
+    AttackController():Attack_state_machine()
     {
         this->Init();
     }
 
-    static void buttonPressed();
+    static void fallingDetected();
+    
 
     virtual void HandleInput();
     virtual void Init();

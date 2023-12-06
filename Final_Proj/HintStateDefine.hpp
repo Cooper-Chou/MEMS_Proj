@@ -4,6 +4,7 @@
 #include <State.hpp>
 #include <stdint.h>
 #include <wiringPi.h>
+#include "bsp.hpp"
 
 #define MAX_LED_BLINK_PERIOD 500 /*ms*/
 #define MIN_LED_BLINK_PERIOD 100 /*ms*/
@@ -43,27 +44,6 @@ class State_RedBlink : public State
         }
 };
 
-class State_RedOn : public State
-{
-    private:
-        static State_RedOn *m_pInstance;
-    
-    public:    
-        virtual void Init();
-        virtual void Enter();
-        virtual void Execute();
-        virtual void Exit();
-
-        static State_RedOn* GetInstance()
-        {
-            if(m_pInstance == nullptr)
-            {
-                m_pInstance = new State_RedOn();
-            }
-            return m_pInstance;
-        }
-};
-
 class State_BlueBlink : public State
 {
     private:
@@ -88,10 +68,10 @@ class State_BlueBlink : public State
         }
 };
 
-class State_BlueOn : public State
+class State_Off : public State
 {
     private:
-        static State_BlueOn *m_pInstance;
+        static State_Off *m_pInstance;
     
     public:    
         virtual void Init();
@@ -99,11 +79,32 @@ class State_BlueOn : public State
         virtual void Execute();
         virtual void Exit();
 
-        static State_BlueOn* GetInstance()
+        static State_Off* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new State_BlueOn();
+                m_pInstance = new State_Off();
+            }
+            return m_pInstance;
+        }
+};
+
+class State_PurpleOn : public State
+{
+    private:
+        static State_PurpleOn *m_pInstance;
+    
+    public:    
+        virtual void Init();
+        virtual void Enter();
+        virtual void Execute();
+        virtual void Exit();
+
+        static State_PurpleOn* GetInstance()
+        {
+            if(m_pInstance == nullptr)
+            {
+                m_pInstance = new State_PurpleOn();
             }
             return m_pInstance;
         }
