@@ -60,11 +60,11 @@ void paint()
 
 enum ReadingState
 {
-    READING_BIT = 0,
-    FINISHED_BIT = 1,
-    WAITING_SIG = 2,
-    COMING_SIG = 3
-    //长时间的高电平之后只会出现 START 和 REPEAT
+    READING_BIT = 0, //正在读数据位
+    FINISHED_BIT = 1, //完成读取数据位
+    WAITING_SIG = 2, //等待新的信号，这个状态在开始 REPEAT 或 IDLE 的时候进入
+    COMING_SIG = 3 // IDLE 之后有码元来了，只可能是 START 或者 REPEAT，抑或是个错误数据
+    //高电平 IDLE 之后只会出现 START 和 REPEAT!
 };
 
 unsigned int digit_length = 0;
@@ -131,7 +131,7 @@ void handleInput()
             {
                 // printf("Error!");
             }
-        }
+        } //只要第三个字节的数据, 前面的和后面的全部扔掉不要
         else if(bit_count >= 16 && bit_count < 24)
         {
             if(readBit() == 1)
@@ -165,7 +165,6 @@ void handleInput()
             //数据帧结束了，进入重复帧或者起始帧
             reading_state = WAITING_SIG;
             bit_count = 0;
-            bit_used = 0;
         }
     }
 }
@@ -188,7 +187,6 @@ int main()
 		if(millis() - count >= 100)
 		{
 			count = millis();
-
 				switch (true_value)
 				{
 				case UP_SIG:
