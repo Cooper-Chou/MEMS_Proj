@@ -9,3 +9,4 @@ void AttackStateMachine::Init()
     State_BlueOn::GetInstance()->Init();
     setCurrentState(State_RedBlink::GetInstance());
 }
+

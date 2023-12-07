@@ -1,29 +1,29 @@
-#include "AttackController.hpp"
+#include "GameController.hpp"
 
-void AttackController::HandleInput()
+void GameController::HandleInput()
 {
 }
 
-void AttackController::Init()
+void GameController::Init()
 {
 	bspInit();
-    wiringPiISR(GPIO_BUTTON,INT_EDGE_FALLING,&AttackController::fallingDetected);
+    wiringPiISR(GPIO_BUTTON,INT_EDGE_FALLING,&GameController::fallingDetected);
 }
 
-void AttackController::Update()
+void GameController::Update()
 {
     HandleInput();
     Attack_state_machine.Update();
 	// printf("Red: %d, Green: %d, Blue: %d \n", digitalRead(GPIO_RED), digitalRead(GPIO_GREEN), digitalRead(GPIO_BLUE));
 }
 
-void AttackController::fallingDetected()
+void GameController::fallingDetected()
 {
  //   printf("Button Pressed!\n");
     last_btn_millis = millis();
 }
 
-int AttackController::buttonState()
+int GameController::buttonState()
 {
     if(millis() == last_btn_millis + BUTTON_DELAY)
     {

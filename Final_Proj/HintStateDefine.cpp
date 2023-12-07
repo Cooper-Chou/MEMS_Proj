@@ -1,5 +1,5 @@
 #include "HintStateDefine.hpp"
-#include "AttackController.hpp"
+#include "GameController.hpp"
 #include "bsp.hpp"
 #include "lyrics.hpp"
 #include <stdio.h>
