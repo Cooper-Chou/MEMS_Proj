@@ -1,31 +1,20 @@
 #include "GameController.hpp"
 
-void GameController::HandleInput()
+void Electron::Init()
 {
+    // 这个地方创建了几个实例, 就决定了有几个状态!
+    // 所有状态都应该是单例, 所以不需要将状态设置成状态机的成员, 在这里初始化后会自动创建一个单例, 以后只调用这个单例就好!
+    GroundState::GetInstance()->Init();
+    ExcitedState::GetInstance()->Init();
+    setCurrentState(GroundState::GetInstance());
 }
 
-void GameController::Init()
+void HintStateDefine::Init()
 {
-	bspInit();
-    wiringPiISR(GPIO_BUTTON,INT_EDGE_FALLING,&GameController::fallingDetected);
-}
-
-void GameController::Update()
-{
-    HandleInput();
-    Battle_state_machine.Update();
-	// printf("Red: %d, Green: %d, Blue: %d \n", digitalRead(GPIO_RED), digitalRead(GPIO_GREEN), digitalRead(GPIO_BLUE));
-}
-
-void GameController::fallingDetected()
-{
- //   printf("Button Pressed!\n");
-    last_btn_millis = millis();
-}
-
-int GameController::buttonState()
-{
-    if(millis() == last_btn_millis + BUTTON_DELAY)
-    {
-    }
+    // 这个地方创建了几个实例, 就决定了有几个状态!
+    // 所有状态都应该是单例, 所以不需要将状态设置成状态机的成员, 在这里初始化后会自动创建一个单例, 以后只调用这个单例就好!
+    State_Peace::GetInstance()->Init();
+    State_Battle::GetInstance()->Init();
+    State_GameEnding::GetInstance()->Init();
+    setCurrentState(State_Peace::GetInstance());
 }

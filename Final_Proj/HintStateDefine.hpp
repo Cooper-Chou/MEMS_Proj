@@ -6,13 +6,14 @@
 #include <wiringPi.h>
 #include "bsp.hpp"
 #include "Music.hpp"
-#include "Electron.hpp"
-#include "ElectronStateDefine.hpp"
+#include "ELectronStateDefine.hpp"
+#include "GameController.hpp"
 
-#define MAX_LED_BLINK_PERIOD 1000 /* ms */
+#define MAX_LED_BLINK_PERIOD 800 /* ms */
 #define MIN_LED_BLINK_PERIOD 100 /* ms */
 #define BEAT 300 /* ms */
-#define LED_BLINK_PERIOD_LEVEL 5
+#define LED_BLINK_PERIOD_LEVEL 5 //LED闪烁频率分成五个档次
+
 
 void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
 {
@@ -32,10 +33,10 @@ class State_Peace : public State
     public:    
         Music music;
 
-        virtual void Init();
-        virtual void Enter();
-        virtual void Execute();
-        virtual void Exit();
+        virtual void Init(GameController* _FSM_Owner);
+        virtual void Enter(GameController* _FSM_Owner);
+        virtual void Execute(GameController* _FSM_Owner);
+        virtual void Exit(GameController* _FSM_Owner);
 
         static State_Peace* GetInstance()
         {
@@ -56,14 +57,13 @@ class State_Battle : public State
         Music music;
         Color Attacking_color;
 
-        unsigned int state_entering_tick;
         unsigned int led_blink_period;
         unsigned int last_led_tick;
 
-        virtual void Init();
-        virtual void Enter();
-        virtual void Execute();
-        virtual void Exit();
+        virtual void Init(GameController* _FSM_Owner);
+        virtual void Enter(GameController* _FSM_Owner);
+        virtual void Execute(GameController* _FSM_Owner);
+        virtual void Exit(GameController* _FSM_Owner);
 
         static State_Battle* GetInstance()
         {
@@ -89,10 +89,10 @@ class State_GameEnding : public State
         unsigned int last_led_tick_winner;
         Color winner_color;
 
-        virtual void Init();
-        virtual void Enter();
-        virtual void Execute();
-        virtual void Exit();
+        virtual void Init(GameController* _FSM_Owner);
+        virtual void Enter(GameController* _FSM_Owner);
+        virtual void Execute(GameController* _FSM_Owner);
+        virtual void Exit(GameController* _FSM_Owner);
 
         static State_GameEnding* GetInstance()
         {

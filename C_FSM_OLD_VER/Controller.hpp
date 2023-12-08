@@ -8,6 +8,7 @@ class Controller
     public:
     Controller *m_pInstance;
     
+    virtual void HandleInput() = 0;
     virtual void Init() = 0;
     virtual void Update() = 0;
 };

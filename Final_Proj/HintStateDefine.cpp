@@ -1,25 +1,24 @@
 #include "HintStateDefine.hpp"
-#include "GameController.hpp"
 #include "bsp.hpp"
 #include "lyrics.hpp"
 #include <stdio.h>
 
 
-void State_Peace::Init()
+void State_Peace::Init(GameController* _FSM_Owner)
 {
     music = new Music(peaceSong, getLength(peaceSong));
 }
-void State_Peace::Enter()
+void State_Peace::Enter(GameController* _FSM_Owner)
 { 
     bspLedOn(GPIO_RED);
     bspLedOff(GPIO_GREEN);
     bspLedOn(GPIO_BLUE);
 }
-void State_Peace::Execute()
+void State_Peace::Execute(GameController* _FSM_Owner)
 {
     music.play();
 }
-void State_Peace::Exit()
+void State_Peace::Exit(GameController* _FSM_Owner)
 {
     bspLedOff(GPIO_RED);
     bspLedOff(GPIO_GREEN);
@@ -27,7 +26,7 @@ void State_Peace::Exit()
 }
 
 
-void State_Battle::Init()
+void State_Battle::Init(GameController* _FSM_Owner)
 {
     music = new Music(battleSong, getLength(battleSong));
     led_blink_period = MAX_LED_BLINK_PERIOD;
@@ -35,18 +34,20 @@ void State_Battle::Init()
     state_entering_tick = 0;
     Attacking_color = Color::NULL;
 }
-void State_Battle::Enter()
+void State_Battle::Enter(GameController* _FSM_Owner)
 {
     state_entering_tick = millis();
     bspLedOn(GPIO_RED);
     bspLedOff(GPIO_GREEN);
     bspLedOn(GPIO_BLUE);
 }
-void State_Battle::Execute()
+void State_Battle::Execute(GameController* _FSM_Owner)
 {
     music.play();
 
-    led_blink_period = MAX_LED_BLINK_PERIOD*(millis() - state_entering_tick)/(EXCITED_STATE_LAST/LED_BLINK_PERIOD_LEVEL)
+    led_blink_period = ((MAX_LED_BLINK_PERIOD-MIN_LED_BLINK_PERIOD)/LED_BLINK_PERIOD_LEVEL)
+                        *(ExcitedState::GetInstance()->state_remain_ms/(EXCITED_STATE_LAST/LED_BLINK_PERIOD_LEVEL) + 1) 
+                        + MIN_LED_BLINK_PERIOD;
     if(Attacking_color == Color::RED)
     {
         ledBlink(GPIO_RED, led_blink_period);
@@ -56,7 +57,7 @@ void State_Battle::Execute()
         ledBlink(GPIO_BLUE, led_blink_period);
     }
 }
-void State_Battle::Exit()
+void State_Battle::Exit(GameController* _FSM_Owner)
 {
     bspLedOff(GPIO_RED);
     bspLedOff(GPIO_GREEN);
@@ -64,7 +65,7 @@ void State_Battle::Exit()
 }
 
 
-void State_GameEnding::Init()
+void State_GameEnding::Init(GameController* _FSM_Owner)
 {
     red_win_music = new Music(redWinSong, getLength(redWinSong));
     blue_win_music = new Music(blueWinSong, getLength(blueWinSong));
@@ -73,7 +74,7 @@ void State_GameEnding::Init()
     last_led_tick_winner = 0;
     winner_color = Color::NULL;
 }
-void State_GameEnding::Enter()
+void State_GameEnding::Enter(GameController* _FSM_Owner)
 { 
 	last_led_tick_green = millis();
     last_led_tick_winner = last_led_tick_green;
@@ -81,7 +82,7 @@ void State_GameEnding::Enter()
     bspLedOn(GPIO_GREEN);
     bspLedOff(GPIO_BLUE);
 }
-void State_GameEnding::Execute()
+void State_GameEnding::Execute(GameController* _FSM_Owner)
 {
     if(winner_color == Color::RED)
     {
@@ -96,7 +97,7 @@ void State_GameEnding::Execute()
         ledBlink(GPIO_GREEN, led_blink_period, last_led_tick_green);
     }
 }
-void State_GameEnding::Exit()
+void State_GameEnding::Exit(GameController* _FSM_Owner)
 {
     bspLedOff(GPIO_RED);
     bspLedOff(GPIO_GREEN);
