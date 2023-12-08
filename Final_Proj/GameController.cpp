@@ -18,3 +18,14 @@ void HintStateDefine::Init()
     State_GameEnding::GetInstance()->Init();
     setCurrentState(State_Peace::GetInstance());
 }
+
+void Photon::Init()
+{
+
+}
+
+
+void GameController::Init()
+{
+    
+}

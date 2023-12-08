@@ -7,6 +7,12 @@ class Chartlet
     char (*aprnc)[];
     int (*aprnc_Xofst)[];
     int (*aprnc_Yofst)[];
+    Chartlet(char (*_aprnc)[], int (*_aprnc_Xofst)[], int (*_aprnc_Yofst)[])
+    {
+        aprnc = _aprnc;
+        aprnc_Xofst = _aprnc_Xofst;
+        aprnc_Yofst = _aprnc_Yofst;
+    }
 };
 
 char gnd_aprnc_1[] = 

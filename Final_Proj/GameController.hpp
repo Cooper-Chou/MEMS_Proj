@@ -27,7 +27,8 @@ class Electron : public StateMachine
     Color color;
 
     public:
-        Electron(GameController* _FSM_Owner):StateMachine<GameController>(_FSM_Owner) //子类构造函数必须要调用父类构造函数
+        Electron(GameController* _FSM_Owner, int _x_coor, int _y_coor, Color _color):
+                StateMachine<GameController>(_FSM_Owner),x_coor(_x_coor),y_coor(_y_coor),color(_color) //子类构造函数必须要调用父类构造函数
         {
             this->Init();
         }
@@ -38,7 +39,7 @@ class Electron : public StateMachine
 class HintStateDefine : public StateMachine
 {
     public:
-        HintStateDefine():StateMachine() //子类构造函数必须要调用父类构造函数
+        HintStateDefine(GameController* _FSM_Owner):StateMachine<GameController>(_FSM_Owner) //子类构造函数必须要调用父类构造函数
         {
             this->Init();
         }
@@ -51,10 +52,10 @@ class Photon : public StateMachine
     public:
     int x_coor;
     int y_coor;
-    Chartlet chartlet;
+    Chartlet chartlet = new Chartlet(photon_aprnc, photon_aprnc_Xofst, photon_aprnc_Yofst);
 
     public:
-        Photon():StateMachine() //子类构造函数必须要调用父类构造函数
+        Photon(GameController* _FSM_Owner, int _x_coor, int _y_coor):StateMachine<GameController>(_FSM_Owner),x_coor(_x_coor),y_coor(_y_coor) //子类构造函数必须要调用父类构造函数
         {
             this->Init();
         }
@@ -65,11 +66,13 @@ class Photon : public StateMachine
 class GameController : public Controller
 {
     public:
-    static unsigned int current_millis;
-    static unsigned int last_btn_millis;
-    HintStateDefine Battle_state_machine;
+    unsigned int last_tick;
+    HintStateDefine hint_state_machine;
+    Photon photon;
+    Electron red_electron;
+    Electron blue_electron;
 
-    GameController():Battle_state_machine()
+    GameController():hint_state_machine(),photon(),red_electron(this),blue_electron(this),Controller()
     {
         this->Init();
     }
@@ -81,6 +84,12 @@ class GameController : public Controller
     virtual void Init();
     virtual void Update();
 };
+
+//速度重分配，计算碰撞，动量守恒
+void VeloRdsrbt()
+{
+
+}
 
 
 #endif
