@@ -13,7 +13,7 @@ void GameController::Init()
 void GameController::Update()
 {
     HandleInput();
-    Attack_state_machine.Update();
+    Battle_state_machine.Update();
 	// printf("Red: %d, Green: %d, Blue: %d \n", digitalRead(GPIO_RED), digitalRead(GPIO_GREEN), digitalRead(GPIO_BLUE));
 }
 

@@ -1,6 +1,9 @@
 #ifndef LYRICS_HPP
 #define LYRICS_HPP
 
+#include <wiringPi.h>
+#include <stdio.h>
+
 #define DO_L 262
 #define RE_L 294
 #define MI_L 330
@@ -23,10 +26,39 @@
 #define LA_H 1760
 #define XI_H 1976
 
+#define BEAT 300 /* ms */
 
-#define SONG_LENGTH 62
+#define RED_WIN_SONG_LENGTH 62
+#define BLUE_WIN_SONG_LENGTH 62
+#define PEACE_SONG_LENGTH 62
+#define BATTLE_SONG_LENGTH 62
 
-int MySong[] = 
+class Music
+{
+	int (*lyrics)[];
+	int length;
+	int current_song_index = 0;
+	unsigned int last_tick;
+	Music(int (*_lyrics)[], int _length);
+	void play()
+	{
+		if(millis() - last_tick >= BEAT)
+		{
+			if(current_song_index < length)
+			{
+				bspSetFreq((*lyrics)[current_song_index]);
+				current_song_index++;
+			}
+			else
+			{
+				//Play repeatedly
+				current_song_index = 0;
+			}
+		}
+	}
+};
+
+int redWinSong[] = 
 {
 	MI_M, MI_M, MI_M, RE_M, 
 	MI_M, RE_M, MI_M, SO_M, 
@@ -46,6 +78,19 @@ int MySong[] =
 	RE_H, RE_H
 };
 
-int songLength = SONG_LENGTH;
+int blueWinSong[] = 
+{
+
+};
+
+int battleSong[] = 
+{
+
+};
+
+int peaceSong[] = 
+{
+
+};
 
 #endif

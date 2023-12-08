@@ -1,6 +1,12 @@
 #include "bsp.hpp"
 #include <stdint.h>
 #include <stdio.h>
+#include <wiringPi.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <softPwm.h>
+#include <signal.h>
+#include "Infrared.hpp"
 
 #define DIVISOR 1
 
@@ -23,9 +29,11 @@ void bspInit()
 	pullUpDnControl(GPIO_BUTTON, PUD_OFF);
 
     pinMode(GPIO_BEEP, PWM_OUTPUT); 
-	pwmWrite(GPIO_BEEP, 512);
 	pwmSetClock(DIVISOR);
 	pwmSetMode(PWM_MODE_MS);
+
+    pinMode(GPIO_IR, INPUT);
+    wiringPiISR(GPIO_IR, INT_EDGE_FALLING, &IRhandleInput);
 
     pcf8591Setup(BASE, ADDRESS);
     
@@ -59,4 +67,16 @@ void bspLedToggle(int _led_pin)
 float bspReadBarVolt(BARS _barPort)
 {
     return VCC * ((float)analogRead(_barPort)/255.0f);
+}
+
+void bspSetFreq(int _freq)
+{
+	int range = 19200000/DIVISOR/_freq;
+	pwmSetRange(range);
+	pwmWrite(GPIO_BEEP, range/2);
+}
+
+int bspReadIR()
+{
+	return IR_true_value;
 }

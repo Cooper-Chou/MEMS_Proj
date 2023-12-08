@@ -5,10 +5,14 @@
 #include <stdint.h>
 #include <wiringPi.h>
 #include "bsp.hpp"
+#include "Music.hpp"
+#include "Electron.hpp"
+#include "ElectronStateDefine.hpp"
 
-#define MAX_LED_BLINK_PERIOD 500 /*ms*/
-#define MIN_LED_BLINK_PERIOD 100 /*ms*/
+#define MAX_LED_BLINK_PERIOD 1000 /* ms */
+#define MIN_LED_BLINK_PERIOD 100 /* ms */
 #define BEAT 300 /* ms */
+#define LED_BLINK_PERIOD_LEVEL 5
 
 void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
 {
@@ -20,91 +24,52 @@ void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
     }
 }
 
-class State_RedBlink : public State
+class State_Peace : public State
 {
     private:
-        static State_RedBlink *m_pInstance;
-
-    public:
-        unsigned int blink_period;
-        unsigned int last_tick;
-
-        virtual void Init();
-        virtual void Enter();
-        virtual void Execute();
-        virtual void Exit();
-
-        static State_RedBlink* GetInstance()
-        {
-            if(m_pInstance == nullptr)
-            {
-                m_pInstance = new State_RedBlink();
-            }
-            return m_pInstance;
-        }
-};
-
-class State_BlueBlink : public State
-{
-    private:
-        static State_BlueBlink *m_pInstance;
-        
-    public:    
-        unsigned int blink_period;
-        unsigned int last_tick;
-
-        virtual void Init();
-        virtual void Enter();
-        virtual void Execute();
-        virtual void Exit();
-
-        static State_BlueBlink* GetInstance()
-        {
-            if(m_pInstance == nullptr)
-            {
-                m_pInstance = new State_BlueBlink();
-            }
-            return m_pInstance;
-        }
-};
-
-class State_Off : public State
-{
-    private:
-        static State_Off *m_pInstance;
+        static State_Peace *m_pInstance;
     
     public:    
+        Music music;
+
         virtual void Init();
         virtual void Enter();
         virtual void Execute();
         virtual void Exit();
 
-        static State_Off* GetInstance()
+        static State_Peace* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new State_Off();
+                m_pInstance = new State_Peace();
             }
             return m_pInstance;
         }
 };
 
-class State_PurpleOn : public State
+class State_Battle : public State
 {
     private:
-        static State_PurpleOn *m_pInstance;
+        static State_Battle *m_pInstance;
     
     public:    
+        Music music;
+        Color Attacking_color;
+
+        unsigned int state_entering_tick;
+        unsigned int led_blink_period;
+        unsigned int last_led_tick;
+
         virtual void Init();
         virtual void Enter();
         virtual void Execute();
         virtual void Exit();
 
-        static State_PurpleOn* GetInstance()
+        static State_Battle* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new State_PurpleOn();
+                m_pInstance = new State_Battle();
             }
             return m_pInstance;
         }
@@ -116,10 +81,13 @@ class State_GameEnding : public State
         static State_GameEnding *m_pInstance;
 
     public:
-        unsigned int blink_period;
-        unsigned int last_tick;
-        int songIndex;
-        int winner_led_pin;
+        Music red_win_music;
+        Music blue_win_music;
+
+        unsigned int led_blink_period;
+        unsigned int last_led_tick_green;
+        unsigned int last_led_tick_winner;
+        Color winner_color;
 
         virtual void Init();
         virtual void Enter();

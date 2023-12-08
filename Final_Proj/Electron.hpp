@@ -1,17 +1,38 @@
 #ifndef Electron_HPP
 #define Electron_HPP
 
-#define GROUND_APRNC_LENGTH 27
-#define EXCITED_APRNC_LENGTH 45
+#include "ElectronStateDefine.hpp"
+#include "Chartlet.hpp"
+
+#define X_DEFAULT_VELOCITY 8.0f;
+#define Y_DEFAULT_VELOCITY 4.0f;
+
+#define EXCITED_STATE_LAST 7000 /* ms */
+
+class ElectronState
+{
+    public:
+        Chartlet chartlet;
+        float x_velo_coe;
+        float y_velo_coe;
+        float impact_radius; //碰撞半径
+};
+
+enum Color
+{
+    NULL = 0,
+    RED = 1,
+    BLUE = 2
+};
 
 class Electron 
 {
-    //此处碰撞箱和贴图使用同一套体积，为了方便
     public:
-
-    char excited_aprnc[EXCITED_APRNC_LENGTH];
-    int excited_aprnc_Xofst[EXCITED_APRNC_LENGTH];
-    int excited_aprnc_Yofst[EXCITED_APRNC_LENGTH];
+    ElectronState gnd_state;
+    ElectronState exc_state;
+    int x_coor;
+    int y_coor;
+    Color color;
 };
 
 #endif

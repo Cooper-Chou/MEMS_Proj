@@ -3,16 +3,16 @@
 #include "bsp.hpp"
 #include <stdio.h>
 
-unsigned int last_tick = 0;
+unsigned int IR_last_us = 0;
 
 void ledBlink(int _led_pin, State *_blinking_state)
 {
     unsigned int current_tick = millis();
 	// printf("last_tick: %d current_tick: %d \n", last_tick, current_tick);
-   if(current_tick - last_tick >= LED_BLINK_PERIOD / 2)
+   if(current_tick - IR_last_us >= LED_BLINK_PERIOD / 2)
     {
 //        printf("Toggled!!\n");
-        last_tick = current_tick;
+        IR_last_us = current_tick;
         bspLedToggle(_led_pin);
     }
 }
@@ -28,7 +28,7 @@ State_BlueOn *State_BlueOn::m_pInstance;
 void State_RedBlink::Init(){;}
 
 void State_RedBlink::Enter(){//printf("Entered Red Blink!\n"); 
-	last_tick = millis();}
+	IR_last_us = millis();}
 
 void State_RedBlink::Execute()
 {
@@ -60,7 +60,7 @@ void State_RedOn::Exit(){;}
 void State_GreenBlink::Init(){;}
 
 void State_GreenBlink::Enter(){//printf("Entered Green Blink!\n");
-	last_tick = millis();}
+	IR_last_us = millis();}
 
 void State_GreenBlink::Execute()
 {
@@ -92,7 +92,7 @@ void State_GreenOn::Exit(){;}
 void State_BlueBlink::Init(){;}
 
 void State_BlueBlink::Enter(){//printf("Entered Blue Blink!\n");
-	last_tick = millis();}
+	IR_last_us = millis();}
 
 void State_BlueBlink::Execute()
 {

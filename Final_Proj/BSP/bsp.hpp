@@ -14,11 +14,11 @@
 
 #define VCC 5.0f
 
+#define GPIO_IR 4
 #define GPIO_RED 29
 #define GPIO_GREEN 28
 #define GPIO_BLUE 27
 #define GPIO_BUTTON 5
-
 #define GPIO_BEEP 1
 
 /*
@@ -42,5 +42,12 @@ void bspLedOff(int _led_pin);
 void bspLedToggle(int _led_pin);
 void bspSetFreq(int _freq);
 float bspReadBarVolt(BARS _barPort);
+int bspReadIR();
+
+template <class T>
+int getLength(T& array)
+{
+ 	return (sizeof(array) / sizeof(array[0]));
+}
 
 #endif
