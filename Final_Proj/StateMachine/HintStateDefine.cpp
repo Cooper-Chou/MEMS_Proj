@@ -31,12 +31,10 @@ void State_Battle::Init(GameController* _FSM_Owner)
     music = new Music(battleSong, getLength(battleSong));
     led_blink_period = MAX_LED_BLINK_PERIOD;
     last_led_tick = 0;
-    state_entering_tick = 0;
     Attacking_color = Color::NULL;
 }
 void State_Battle::Enter(GameController* _FSM_Owner)
 {
-    state_entering_tick = millis();
     bspLedOn(GPIO_RED);
     bspLedOff(GPIO_GREEN);
     bspLedOn(GPIO_BLUE);
@@ -46,7 +44,7 @@ void State_Battle::Execute(GameController* _FSM_Owner)
     music.play();
 
     led_blink_period = ((MAX_LED_BLINK_PERIOD-MIN_LED_BLINK_PERIOD)/LED_BLINK_PERIOD_LEVEL)
-                        *(ExcitedState::GetInstance()->state_remain_ms/(EXCITED_STATE_LAST/LED_BLINK_PERIOD_LEVEL) + 1) 
+                        *(RedExcitedState::GetInstance()->state_remain_ms/(EXCITED_STATE_LAST/LED_BLINK_PERIOD_LEVEL) + 1) 
                         + MIN_LED_BLINK_PERIOD;
     if(Attacking_color == Color::RED)
     {

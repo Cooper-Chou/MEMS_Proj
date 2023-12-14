@@ -24,11 +24,11 @@ class ExistState : public PhotonState
         virtual void Exit(GameController* _FSM_Owner){;}
 
         // GetInstance() 必须要在子类里面定义, 如果在父类 State 中定义, 全场就只有一个 State 了!
-        static GroundState* GetInstance()
+        static ExistState* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new GroundState();
+                m_pInstance = new ExistState();
             }
             return m_pInstance;
         }
