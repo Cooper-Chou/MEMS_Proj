@@ -19,13 +19,15 @@ class ElectronState : public State
         float impact_radius; //碰撞半径
 };
 
+
+
 class RedGroundState : public ElectronState
 {
     private:
         static RedGroundState *m_pInstance;
     
     public:
-        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明!
+        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
         virtual void Init(GameController* _FSM_Owner){;}
         virtual void Enter(GameController* _FSM_Owner){;}
         virtual void Execute(GameController* _FSM_Owner){;}
@@ -50,7 +52,7 @@ class RedExcitedState : public ElectronState
     public:
         unsigned int state_entering_tick;
         unsigned int state_remain_ms;
-        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明!
+        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
         virtual void Execute(GameController* _FSM_Owner);
@@ -73,7 +75,7 @@ class BlueGroundState : public ElectronState
         static BlueGroundState *m_pInstance;
     
     public:
-        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明!
+        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
         virtual void Init(GameController* _FSM_Owner){;}
         virtual void Enter(GameController* _FSM_Owner){;}
         virtual void Execute(GameController* _FSM_Owner){;}
@@ -98,7 +100,7 @@ class BlueExcitedState : public ElectronState
     public:
         unsigned int state_entering_tick;
         unsigned int state_remain_ms;
-        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明!
+        //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
         virtual void Execute(GameController* _FSM_Owner);

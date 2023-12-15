@@ -25,10 +25,10 @@ void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
     }
 }
 
-class State_Peace : public State
+class PeaceState : public State
 {
     private:
-        static State_Peace *m_pInstance;
+        static PeaceState *m_pInstance;
     
     public:    
         Music music;
@@ -38,20 +38,20 @@ class State_Peace : public State
         virtual void Execute(GameController* _FSM_Owner);
         virtual void Exit(GameController* _FSM_Owner);
 
-        static State_Peace* GetInstance()
+        static PeaceState* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new State_Peace();
+                m_pInstance = new PeaceState();
             }
             return m_pInstance;
         }
 };
 
-class State_Battle : public State
+class BattleState : public State
 {
     private:
-        static State_Battle *m_pInstance;
+        static BattleState *m_pInstance;
     
     public:    
         Music music;
@@ -65,20 +65,20 @@ class State_Battle : public State
         virtual void Execute(GameController* _FSM_Owner);
         virtual void Exit(GameController* _FSM_Owner);
 
-        static State_Battle* GetInstance()
+        static BattleState* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new State_Battle();
+                m_pInstance = new BattleState();
             }
             return m_pInstance;
         }
 };
 
-class State_GameEnding : public State
+class EndingState : public State
 {
     private:
-        static State_GameEnding *m_pInstance;
+        static EndingState *m_pInstance;
 
     public:
         Music red_win_music;
@@ -94,11 +94,11 @@ class State_GameEnding : public State
         virtual void Execute(GameController* _FSM_Owner);
         virtual void Exit(GameController* _FSM_Owner);
 
-        static State_GameEnding* GetInstance()
+        static EndingState* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new State_GameEnding();
+                m_pInstance = new EndingState();
             }
             return m_pInstance;
         }

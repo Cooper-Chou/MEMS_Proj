@@ -1,5 +1,6 @@
 #include "Shader.hpp"
 #include <stdio.h>
+#include "MATH.h"
 
 void Shader::RefreshMap()
 {
@@ -62,7 +63,11 @@ void Shader::Shade(Chartlet (*_element_list)[],int _element_num)
             long element_linear_coor = 0;
             long element_y_coor = (*_element_list)[i].p_chart_onwer->y_coor + (*(*_element_list)[i].aprnc_Yofst)[j];
             long element_x_coor = (*_element_list)[i].p_chart_onwer->x_coor + (*(*_element_list)[i].aprnc_Xofst)[j];
-
+            //贴图的中心的坐标默认已经取过模，这里要在加上偏移量以后再取一次模，实现周期性边界的效果
+            element_y_coor = modulus(element_y_coor - 1, MAP_HEIGHT - 2) + 1;
+            element_x_coor = modulus(element_x_coor - 1, MAP_WIDTH - 2) + 1;
+            //上面 -1 + 1 -2 的目的是减去边框，因为实际游戏区域比地图小一圈，就是小了边框
+            
             element_linear_coor = (MAP_HEIGHT - element_y_coor)*(MAP_WIDTH+1)//此处 +1 是为了包含换行符
                                      + element_x_coor;
             fseek(fp_map, (element_linear_coor-1L)*sizeof(char), SEEK_SET); //此处偏移量需要减1, 比如在坐标为1的时候, 就是相对于文件开头不偏移
@@ -89,4 +94,10 @@ void Shader::Display()
     {
         printf("%c",_buffer_char);
     }
+}
+
+void Shader::Close()
+{
+    fclose(fp_map);
+    fclose(fp_origin_map);
 }

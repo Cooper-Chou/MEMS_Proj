@@ -3,6 +3,7 @@
 
 #include <wiringPi.h>
 #include <stdio.h>
+#include "bsp.hpp"
 
 #define DO_L 262
 #define RE_L 294

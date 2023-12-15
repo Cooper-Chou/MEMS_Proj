@@ -12,6 +12,11 @@
 #define AI2 BASE+2
 #define AI3 BASE+3
 
+#define RED_BAR_X AI0
+#define RED_BAR_Y AI1
+#define BLUE_BAR_X AI2
+#define BLUE_BAR_Y AI3
+
 #define VCC 5.0f
 
 #define GPIO_IR 4
@@ -20,6 +25,9 @@
 #define GPIO_BLUE 27
 #define GPIO_BUTTON 5
 #define GPIO_BEEP 1
+
+#define REFRESH_RATE 25 /* Hz */
+#define REFRESH_PERIOD (1000 / REFRESH_RATE) /* ms */
 
 /*
 Bar1X --> AIN0

@@ -24,6 +24,7 @@ class Shader
     void Shade(Chartlet (*_element_list)[], int _element_num);
     void Display();
     void RefreshMap();
+    void Close();
 };
 
 

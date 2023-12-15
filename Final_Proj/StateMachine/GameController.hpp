@@ -6,10 +6,15 @@
 #include "bsp.hpp"
 #include <StateMachine.hpp>
 #include "Controller.hpp"
+#include "PhotonStateDefine.hpp"
+#include "ElectronStateDefine.hpp"
+#include "HintStateDefine.hpp"
 #include "Chartlet.hpp"
+#include <cmath>
 
-#define X_DEFAULT_VELOCITY 8.0f;
-#define Y_DEFAULT_VELOCITY 4.0f;
+//此处的速度只是一个相对值，没有单位，只能 大了调小 小了调大 这样子
+#define X_DEFAULT_VELOCITY 800.0f/(float)REFRESH_PERIOD;
+#define Y_DEFAULT_VELOCITY 400.0f/(float)REFRESH_PERIOD;
 
 
 enum Color
@@ -141,18 +146,30 @@ class GameController : public Controller
     GameController():hint_state_machine(),photon(this),red_electron(this),blue_electron(this),Controller()
     {
         this->Init();
-    }
+    }    
 
-    static void fallingDetected();
-    
-
-    virtual void HandleInput();
     virtual void Init();
     virtual void Update();
 };
 
+bool ImpactOverlap(StateMachine _A_xon, StateMachine _B_xon)
+{
+    float x_dist = _A_xon.x_coor - _B_xon.x_coor;
+    float y_dist = _A_xon.y_coor - _B_xon.y_coor;
+    float dist = sqrtf(x_dist*x_dist + y_dist*y_dist);
+
+    if(dist - (_A_xon.impact_radius + _B_xon.impact_radius) <= -0.5f)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 //速度重分配，计算碰撞，动量守恒
-void VeloRdsrbt()
+void VeloRedistribute()
 {
 
 }
