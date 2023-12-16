@@ -24,7 +24,15 @@ enum Color
     BLUE = 2
 };
 
-class RedElectron : public StateMachine
+enum GameState
+{
+    PEACE = 0,
+    BATTLE = 1,
+    END = 2
+};
+
+
+class RedElectron : public StateMachine<GameController>
 {
     private:
     static RedElectron *m_pInstance;
@@ -33,11 +41,13 @@ class RedElectron : public StateMachine
     long x_coor;
     long y_coor;
     Color color;
+    ElectronGroundState ground_state;
+    ElectronExcitedState excited_state;
 
     public:
     RedElectron(GameController* _FSM_Owner, int _x_coor, int _y_coor):
             StateMachine<GameController>(_FSM_Owner), //子类构造函数必须要调用父类构造函数
-            x_coor(_x_coor),y_coor(_y_coor),color(Color::RED)
+            x_coor(_x_coor),y_coor(_y_coor),color(Color::RED),ground_state<GameController>(),excited_state<GameController>()
     {
         this->Init();
     }
@@ -54,7 +64,7 @@ class RedElectron : public StateMachine
         }
 };
 
-class BlueElectron : public StateMachine
+class BlueElectron : public StateMachine<GameController>
 {
     private:
     static BlueElectron *m_pInstance;
@@ -63,10 +73,13 @@ class BlueElectron : public StateMachine
     long x_coor;
     long y_coor;
     Color color;
+    ElectronGroundState ground_state;
+    ElectronExcitedState excited_state;
 
     public:
     BlueElectron(GameController* _FSM_Owner, int _x_coor, int _y_coor):
-            StateMachine<GameController>(_FSM_Owner),x_coor(_x_coor),y_coor(_y_coor),color(Color::BLUE) //子类构造函数必须要调用父类构造函数
+            StateMachine<GameController>(_FSM_Owner), //子类构造函数必须要调用父类构造函数
+            x_coor(_x_coor),y_coor(_y_coor),color(Color::BLUE),ground_state<GameController>(),excited_state<GameController>()
     {
         this->Init();
     }
@@ -83,7 +96,7 @@ class BlueElectron : public StateMachine
         }
 };
 
-class HintStateMachine : public StateMachine
+class HintStateMachine : public StateMachine<GameController>
 {
     private:
     static HintStateMachine *m_pInstance;
@@ -106,7 +119,7 @@ class HintStateMachine : public StateMachine
         }
 };
 
-class Photon : public StateMachine
+class Photon : public StateMachine<GameController>
 {
     private:
     static Photon *m_pInstance;
@@ -114,7 +127,8 @@ class Photon : public StateMachine
     public:
     long x_coor;
     long y_coor;
-    Chartlet chartlet = new Chartlet<Photon>(m_pInstance, &photon_aprnc, &photon_aprnc_Xofst, &photon_aprnc_Yofst, photon_aprnc_length);
+    PhotonExistState exist_state;
+    PhotonGoneState gone_state;
 
     public:
         Photon(GameController* _FSM_Owner, int _x_coor, int _y_coor):StateMachine<GameController>(_FSM_Owner),x_coor(_x_coor),y_coor(_y_coor) //子类构造函数必须要调用父类构造函数
@@ -138,12 +152,24 @@ class GameController : public Controller
 {
     public:
     unsigned int last_tick;
+    unsigned int battle_state_entering_tick;
+    unsigned int battle_state_remain_ms;
+
     HintStateMachine hint_state_machine;
     Photon photon;
     RedElectron red_electron;
     BlueElectron blue_electron;
+    GameState game_state;
 
-    GameController():hint_state_machine(),photon(this),red_electron(this),blue_electron(this),Controller()
+    /*--------------------------------------*/
+    Color game_state_color;
+    //如果处于PEACE状态，这个变量没有意义，应该为NULL
+    //如果处于BATTLE状态，这个变量表示进攻方
+    //如果处于END状态，这个变量表示胜利方
+    /*--------------------------------------*/
+
+    GameController():hint_state_machine(this),photon(this),game_state(GameState::PEACE),
+                    red_electron(this),blue_electron(this),Controller()
     {
         this->Init();
     }    

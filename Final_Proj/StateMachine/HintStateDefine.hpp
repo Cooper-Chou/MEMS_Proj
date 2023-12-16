@@ -31,7 +31,7 @@ class PeaceState : public State
         static PeaceState *m_pInstance;
     
     public:    
-        Music music;
+        Music *music;
 
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
@@ -54,7 +54,7 @@ class BattleState : public State
         static BattleState *m_pInstance;
     
     public:    
-        Music music;
+        Music *music;
         Color Attacking_color;
 
         unsigned int led_blink_period;
@@ -81,8 +81,8 @@ class EndingState : public State
         static EndingState *m_pInstance;
 
     public:
-        Music red_win_music;
-        Music blue_win_music;
+        Music *red_win_music;
+        Music *blue_win_music;
 
         unsigned int led_blink_period;
         unsigned int last_led_tick_green;

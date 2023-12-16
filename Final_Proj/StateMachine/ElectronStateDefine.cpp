@@ -6,108 +6,56 @@
 #define EXC_IMPACT_RADIUS 7.0f
 #define GND_IMPACT_RADIUS 3.0f
 
-void RedGroundState::Init(GameController* _FSM_Owner)
+void ElectronGroundState::Init(GameController* _FSM_Owner)
 {
     x_velo_coe = 1.0f;
     y_velo_coe = 1.0f;
     impact_radius = GND_IMPACT_RADIUS;
-    chartlet.Init(RedElectron.GetInstance(), &gnd_aprnc_1, &gnd_aprnc_1_Xofst, &gnd_aprnc_1_Yofst, gnd_aprnc_1_length);
 }
-void RedGroundState::Enter(GameController* _FSM_Owner)
+void ElectronGroundState::Enter(GameController* _FSM_Owner)
 { 
 ;
 }
-void RedGroundState::Execute(GameController* _FSM_Owner)
-{;
+void ElectronGroundState::Execute(GameController* _FSM_Owner)
+{
+    //处于战斗状态的基态电子需要某个方向的额外加速
+    if(_FSM_Owner->game_state == GameState::BATTLE)
+    {
+        int random_index = rand() % 8;
+        x_velo_coe = GetRandomXVeloCoe(random_index);
+        y_velo_coe = GetRandomYVeloCoe(random_index);
+    }
+    else
+    {
+        x_velo_coe = 1.0f;
+        y_velo_coe = 1.0f;
+    }
 }
-void RedGroundState::Exit(GameController* _FSM_Owner)
+void ElectronGroundState::Exit(GameController* _FSM_Owner)
 {
 ;
 }
 
-void RedExcitedState::Init(GameController* _FSM_Owner)
+void ElectronExcitedState::Init(GameController* _FSM_Owner)
 {
-    state_entering_tick = 0;
-    state_remain_ms = 0;
     x_velo_coe = EXC_X_VELO_COE;
     y_velo_coe = EXC_Y_VELO_COE;
     impact_radius = EXC_IMPACT_RADIUS;
-    chartlet.Init(RedElectron.GetInstance(), &exc_aprnc_1, &exc_aprnc_1_Xofst, &exc_aprnc_1_Yofst, exc_aprnc_1_length);
 }
-void RedExcitedState::Enter(GameController* _FSM_Owner)
-{ 
-    state_entering_tick = millis();
-    srand(micros());
-    int random_index = rand() % 8;
-    RedGroundState::GetInstance()->x_velo_coe = GetRandomXVeloCoe(random_index);
-    RedGroundState::GetInstance()->y_velo_coe = GetRandomYVeloCoe(random_index);
-}
-void RedExcitedState::Execute(GameController* _FSM_Owner)
+void ElectronExcitedState::Enter(GameController* _FSM_Owner)
 {
-    state_remain_ms = EXCITED_STATE_LAST - (millis() - state_entering_tick);
-    if(state_remain_ms <= 0)
-    {
-        _FSM_Owner->red_electron.ChangeState(RedGroundState::GetInstance());
-    }
+    _FSM_Owner->game_state = GameState::BATTLE;
+    _FSM_Owner->battle_state_entering_tick = millis();
+    srand(micros()); //以进入激发态的时间为种子
 }
-void RedExcitedState::Exit(GameController* _FSM_Owner)
+void ElectronExcitedState::Execute(GameController* _FSM_Owner)
 {
-    state_remain_ms = 0;
-    RedGroundState::GetInstance()->x_velo_coe = 1.0f;
-    RedGroundState::GetInstance()->y_velo_coe = 1.0f;
+    _FSM_Owner->battle_state_remain_ms = EXCITED_STATE_LAST - (millis() - _FSM_Owner->battle_state_entering_tick);
 }
-
-
-
-void RedGroundState::Init(GameController* _FSM_Owner)
+void ElectronExcitedState::Exit(GameController* _FSM_Owner)
 {
-    x_velo_coe = 1.0f;
-    y_velo_coe = 1.0f;
-    impact_radius = GND_IMPACT_RADIUS;
-    chartlet.Init(BlueElectron.GetInstance(), &gnd_aprnc_2, &gnd_aprnc_2_Xofst, &gnd_aprnc_2_Yofst, gnd_aprnc_2_length);
-}
-void BlueGroundState::Enter(GameController* _FSM_Owner)
-{ 
-;
-}
-void BlueGroundState::Execute(GameController* _FSM_Owner)
-{;
-}
-void BlueGroundState::Exit(GameController* _FSM_Owner)
-{
-;
-}
-
-void BlueExcitedState::Init(GameController* _FSM_Owner)
-{
-    state_entering_tick = 0;
-    state_remain_ms = 0;
-    x_velo_coe = EXC_X_VELO_COE;
-    y_velo_coe = EXC_Y_VELO_COE;
-    impact_radius = EXC_IMPACT_RADIUS;
-    chartlet.Init(BlueElectron.GetInstance(), &exc_aprnc_2, &exc_aprnc_2_Xofst, &exc_aprnc_2_Yofst, exc_aprnc_2_length);
-}
-void BlueExcitedState::Enter(GameController* _FSM_Owner)
-{ 
-    state_entering_tick = millis();
-    srand(micros());
-    int random_index = rand() % 8;
-    BlueGroundState::GetInstance()->x_velo_coe = GetRandomXVeloCoe(random_index);
-    BlueGroundState::GetInstance()->y_velo_coe = GetRandomYVeloCoe(random_index);
-}
-void BlueExcitedState::Execute(GameController* _FSM_Owner)
-{
-    state_remain_ms = EXCITED_STATE_LAST - (millis() - state_entering_tick);
-    if(state_remain_ms <= 0)
-    {
-        _FSM_Owner->blue_electron.ChangeState(BlueGroundState::GetInstance());
-    }
-}
-void BlueExcitedState::Exit(GameController* _FSM_Owner)
-{
-    state_remain_ms = 0;
-    BlueGroundState::GetInstance()->x_velo_coe = 1.0f;
-    BlueGroundState::GetInstance()->y_velo_coe = 1.0f;
+    _FSM_Owner->game_state = GameState::PEACE;
+    _FSM_Owner->battle_state_remain_ms = 0;
 }
 
 

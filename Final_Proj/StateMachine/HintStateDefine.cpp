@@ -6,7 +6,7 @@
 
 void PeaceState::Init(GameController* _FSM_Owner)
 {
-    music = new Music(peaceSong, getLength(peaceSong));
+    music = new Music(&peaceSong, getLength(peaceSong));
 }
 void PeaceState::Enter(GameController* _FSM_Owner)
 { 
@@ -28,7 +28,7 @@ void PeaceState::Exit(GameController* _FSM_Owner)
 
 void BattleState::Init(GameController* _FSM_Owner)
 {
-    music = new Music(battleSong, getLength(battleSong));
+    music = new Music(&battleSong, getLength(battleSong));
     led_blink_period = MAX_LED_BLINK_PERIOD;
     last_led_tick = 0;
     Attacking_color = Color::NULL;
@@ -65,8 +65,8 @@ void BattleState::Exit(GameController* _FSM_Owner)
 
 void EndingState::Init(GameController* _FSM_Owner)
 {
-    red_win_music = new Music(redWinSong, getLength(redWinSong));
-    blue_win_music = new Music(blueWinSong, getLength(blueWinSong));
+    red_win_music = new Music(&redWinSong, getLength(redWinSong));
+    blue_win_music = new Music(&blueWinSong, getLength(blueWinSong));
     led_blink_period = 300;
     last_led_tick_green = 0;
     last_led_tick_winner = 0;
