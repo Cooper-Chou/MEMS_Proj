@@ -4,9 +4,9 @@
 #include <State.hpp>
 #include <stdint.h>
 #include <wiringPi.h>
-#include "bsp.hpp"
-#include "Music.hpp"
-#include "ELectronStateDefine.hpp"
+#include "../BSP/bsp.hpp"
+#include "../BSP/Music.hpp"
+#include "ElectronStateDefine.hpp"
 #include "GameController.hpp"
 
 #define MAX_LED_BLINK_PERIOD 800 /* ms */
@@ -25,13 +25,13 @@ void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
     }
 }
 
-class PeaceState : public State
+class PeaceState : public State<GameController>
 {
     private:
         static PeaceState *m_pInstance;
     
     public:    
-        Music *music;
+        Music *p_music;
 
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
@@ -48,13 +48,13 @@ class PeaceState : public State
         }
 };
 
-class BattleState : public State
+class BattleState : public State<GameController>
 {
     private:
         static BattleState *m_pInstance;
     
     public:    
-        Music *music;
+        Music *p_music;
         Color Attacking_color;
 
         unsigned int led_blink_period;
@@ -75,14 +75,14 @@ class BattleState : public State
         }
 };
 
-class EndingState : public State
+class EndingState : public State<GameController>
 {
     private:
         static EndingState *m_pInstance;
 
     public:
-        Music *red_win_music;
-        Music *blue_win_music;
+        Music *red_win_p_music;
+        Music *blue_win_p_music;
 
         unsigned int led_blink_period;
         unsigned int last_led_tick_green;

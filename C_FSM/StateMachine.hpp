@@ -8,13 +8,13 @@ class StateMachine
 {
     protected:
     controller* p_FSM_owner;
-    State *p_current_state;
+    State<controller> *p_current_state;
     
     public:
     StateMachine(controller* _FSM_Owner) : _FSM_Owner(_FSM_Owner),p_current_state(nullptr)
     {}
 
-    void setCurrentState(State *p_state)
+    void setCurrentState(State<controller> *p_state)
 	{
 		p_current_state = p_state;
 		p_current_state->Enter(p_FSM_owner);
@@ -26,7 +26,7 @@ class StateMachine
             p_current_state->Execute(p_FSM_owner);
         }
     }
-    void ChangeState(State *p_next_state)
+    void ChangeState(State<controller> *p_next_state)
     {
         if(p_next_state != nullptr && p_current_state != p_next_state)
         {
@@ -36,7 +36,7 @@ class StateMachine
         }
     }
     virtual void Init() = 0;
-    void HandleInput() = 0;
+    virtual void HandleInput() = 0;
 };
 
 #endif

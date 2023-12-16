@@ -1,12 +1,11 @@
 #include "HintStateDefine.hpp"
-#include "bsp.hpp"
-#include "lyrics.hpp"
+#include "../BSP/bsp.hpp"
 #include <stdio.h>
 
 
 void PeaceState::Init(GameController* _FSM_Owner)
 {
-    music = new Music(&peaceSong, getLength(peaceSong));
+    p_music = new Music(&peaceSong, getLength(peaceSong));
 }
 void PeaceState::Enter(GameController* _FSM_Owner)
 { 
@@ -16,7 +15,7 @@ void PeaceState::Enter(GameController* _FSM_Owner)
 }
 void PeaceState::Execute(GameController* _FSM_Owner)
 {
-    music.play();
+    p_music->play();
 }
 void PeaceState::Exit(GameController* _FSM_Owner)
 {
@@ -28,10 +27,10 @@ void PeaceState::Exit(GameController* _FSM_Owner)
 
 void BattleState::Init(GameController* _FSM_Owner)
 {
-    music = new Music(&battleSong, getLength(battleSong));
+    p_music = new Music(&battleSong, getLength(battleSong));
     led_blink_period = MAX_LED_BLINK_PERIOD;
     last_led_tick = 0;
-    Attacking_color = Color::NULL;
+    Attacking_color = Color::NO_COLOR;
 }
 void BattleState::Enter(GameController* _FSM_Owner)
 {
@@ -41,18 +40,18 @@ void BattleState::Enter(GameController* _FSM_Owner)
 }
 void BattleState::Execute(GameController* _FSM_Owner)
 {
-    music.play();
+    p_music->play();
 
     led_blink_period = ((MAX_LED_BLINK_PERIOD-MIN_LED_BLINK_PERIOD)/LED_BLINK_PERIOD_LEVEL)
-                        *(RedExcitedState::GetInstance()->state_remain_ms/(EXCITED_STATE_LAST/LED_BLINK_PERIOD_LEVEL) + 1) 
+                        *(_FSM_Owner->battle_state_remain_ms/(EXCITED_STATE_LAST/LED_BLINK_PERIOD_LEVEL) + 1) 
                         + MIN_LED_BLINK_PERIOD;
     if(Attacking_color == Color::RED)
     {
-        ledBlink(GPIO_RED, led_blink_period);
+        ledBlink(GPIO_RED, led_blink_period, last_led_tick);
     }
     else if(Attacking_color == Color::BLUE)
     {
-        ledBlink(GPIO_BLUE, led_blink_period);
+        ledBlink(GPIO_BLUE, led_blink_period, last_led_tick);
     }
 }
 void BattleState::Exit(GameController* _FSM_Owner)
@@ -65,12 +64,12 @@ void BattleState::Exit(GameController* _FSM_Owner)
 
 void EndingState::Init(GameController* _FSM_Owner)
 {
-    red_win_music = new Music(&redWinSong, getLength(redWinSong));
-    blue_win_music = new Music(&blueWinSong, getLength(blueWinSong));
+    red_win_p_music = new Music(&redWinSong, getLength(redWinSong));
+    blue_win_p_music = new Music(&blueWinSong, getLength(blueWinSong));
     led_blink_period = 300;
     last_led_tick_green = 0;
     last_led_tick_winner = 0;
-    winner_color = Color::NULL;
+    winner_color = Color::NO_COLOR;
 }
 void EndingState::Enter(GameController* _FSM_Owner)
 { 
@@ -84,13 +83,13 @@ void EndingState::Execute(GameController* _FSM_Owner)
 {
     if(winner_color == Color::RED)
     {
-        red_win_music.play();
+        red_win_p_music->play();
         ledBlink(GPIO_RED, led_blink_period, last_led_tick_winner);
         ledBlink(GPIO_GREEN, led_blink_period, last_led_tick_green);
     }
     else if(winner_color == Color::BLUE)
     {
-        blue_win_music.play();
+        blue_win_p_music->play();
         ledBlink(GPIO_BLUE, led_blink_period, last_led_tick_winner);
         ledBlink(GPIO_GREEN, led_blink_period, last_led_tick_green);
     }

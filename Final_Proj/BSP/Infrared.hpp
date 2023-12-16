@@ -2,6 +2,7 @@
 #define Infrared_HPP
 
 #include <wiringPi.h>
+#include <stdint.h>
 
 #define TOLERANCE 300 /* us */
 #define DIGIT_START 13500 /* us */

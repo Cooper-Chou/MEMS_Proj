@@ -1,6 +1,7 @@
 #include "GameController.hpp"
-#include "bsp.hpp"
+#include "../BSP/bsp.hpp"
 #include <wiringPi.h>
+#include "../GameComponent/Shader.hpp"
 
 void GameController::Update()
 {
@@ -18,20 +19,20 @@ void GameController::Update()
 
     if(game_state == GameState::PEACE)
     {
-        game_state_color = Color::NULL;
+        game_state_color = Color::NO_COLOR;
     }
 
     if(game_state == GameState::BATTLE)
     {
         //先找出进攻方
-        StateMachine<GameController>* p_attacker = nullptr;
+        Xon* p_attacker = nullptr;
         switch (game_state_color)
         {
-        case red_electron.color:
+        case Color::RED:
             p_attacker = &red_electron;
             break;
 
-        case blue_electron.color:
+        case Color::BLUE:
             p_attacker = &blue_electron;
             break;
         }
@@ -169,6 +170,12 @@ void Photon::Init()
 void GameController::Init()
 {
     last_tick = millis();
+    red_electron.Init();
+    blue_electron.Init();
+    photon.Init();
+    red_electron.SetInitCoor(Shader::MAP_WIDTH / 4, Shader::MAP_HEIGHT / 2);
+    blue_electron.SetInitCoor(3*Shader::MAP_WIDTH / 4, Shader::MAP_HEIGHT / 2);
+    photon.SetInitCoor(Shader::MAP_WIDTH / 2, Shader::MAP_HEIGHT / 2);
     electron_list[0] = &red_electron;
     electron_list[1] = &blue_electron;
 }

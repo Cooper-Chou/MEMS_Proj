@@ -2,6 +2,7 @@
 #define Shader_HPP
 
 #include <stdio.h>
+#include "../StateMachine/GameController.hpp"
 #include "Chartlet.hpp"
 
 #define BLOCK_SHAPE '@'
@@ -14,8 +15,8 @@ class Shader
     FILE* fp_map;
     int file_length;
 
-    static int MAP_WIDTH;
-    static int MAP_HEIGHT;
+    static long MAP_WIDTH;
+    static long MAP_HEIGHT;
     
     Chartlet (*element_list)[];
 

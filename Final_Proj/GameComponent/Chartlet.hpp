@@ -3,35 +3,32 @@
 
 #include "GameController.hpp"
 
-template<typename _xon>
 class Chartlet
 {
-    protected:
-    _xon* p_chart_owner;
-
     public:
+    Xon* p_chart_owner;
     char (*aprnc)[];
     long (*aprnc_Xofst)[];
     long (*aprnc_Yofst)[];
     int length;
 
-    Chartlet(char (*_aprnc)[], long (*_aprnc_Xofst)[], long (*_aprnc_Yofst)[], int _length)
+    Chartlet(Xon* _p_chart_owner,char (*_aprnc)[], long (*_aprnc_Xofst)[], long (*_aprnc_Yofst)[], int _length)
     {
-        this->Init(char (*_aprnc)[], long (*_aprnc_Xofst)[], long (*_aprnc_Yofst)[], int _length);
+        this->Init(_p_chart_owner, _aprnc, _aprnc_Xofst, _aprnc_Yofst, _length);
     }
 
-    Init(char (*_aprnc)[], long (*_aprnc_Xofst)[], long (*_aprnc_Yofst)[], int _length)
+    void Init(Xon* _p_chart_owner, char (*_aprnc)[], long (*_aprnc_Xofst)[], long (*_aprnc_Yofst)[], int _length)
     {
-        p_chart_owner = _p_chart_onwer;
+        p_chart_owner = _p_chart_owner;
         aprnc = _aprnc;
         aprnc_Xofst = _aprnc_Xofst;
         aprnc_Yofst = _aprnc_Yofst;
         length = _length;
     }
 
-    SetOwner(_xon* _p_chart_onwer)
+    void SetOwner(Xon* _p_chart_owner)
     {
-        p_chart_owner = _p_chart_onwer;
+        p_chart_owner = _p_chart_owner;
     }
 
     long GetOwnerXCoor()
@@ -44,6 +41,8 @@ class Chartlet
         return p_chart_owner->y_coor;
     }
 };
+
+Xon* temp_empty_pointer = nullptr;
 
 char gnd_aprnc_1_element[] = 
 {
@@ -68,7 +67,7 @@ long gnd_aprnc_1_Yofst[] =
 
 int gnd_aprnc_1_length = 17;
 
-Chartlet *gnd_aprnc_1 = new Chartlet(&gnd_aprnc_1_element, &gnd_aprnc_1_Xofst, &gnd_aprnc_1_Yofst, gnd_aprnc_1_length);
+Chartlet *p_gnd_aprnc_1 = new Chartlet(temp_empty_pointer, &gnd_aprnc_1_element, &gnd_aprnc_1_Xofst, &gnd_aprnc_1_Yofst, gnd_aprnc_1_length);
 
 /*----------------------------*/
 
@@ -95,7 +94,7 @@ long gnd_aprnc_2_Yofst[] =
 
 int gnd_aprnc_2_length = 17;
 
-Chartlet *gnd_aprnc_2 = new Chartlet(&gnd_aprnc_2_element, &gnd_aprnc_2_Xofst, &gnd_aprnc_2_Yofst, gnd_aprnc_2_length);
+Chartlet *p_gnd_aprnc_2 = new Chartlet(temp_empty_pointer, &gnd_aprnc_2_element, &gnd_aprnc_2_Xofst, &gnd_aprnc_2_Yofst, gnd_aprnc_2_length);
 
 /*----------------------------*/
 
@@ -128,7 +127,7 @@ long exc_aprnc_1_Yofst[] =
 
 int exc_aprnc_1_length = 52;
 
-Chartlet *exc_aprnc_1 = new Chartlet(&exc_aprnc_1_element, &exc_aprnc_1_Xofst, &exc_aprnc_1_Yofst, exc_aprnc_1_length);
+Chartlet *p_exc_aprnc_1 = new Chartlet(temp_empty_pointer, &exc_aprnc_1_element, &exc_aprnc_1_Xofst, &exc_aprnc_1_Yofst, exc_aprnc_1_length);
 
 /*----------------------------*/
 
@@ -161,7 +160,7 @@ long exc_aprnc_2_Yofst[] =
 
 int exc_aprnc_2_length = 52;
 
-Chartlet *exc_aprnc_2 = new Chartlet(&exc_aprnc_2_element, &exc_aprnc_2_Xofst, &exc_aprnc_2_Yofst, exc_aprnc_2_length);
+Chartlet *p_exc_aprnc_2 = new Chartlet(temp_empty_pointer, &exc_aprnc_2_element, &exc_aprnc_2_Xofst, &exc_aprnc_2_Yofst, exc_aprnc_2_length);
 
 /*----------------------------*/
 
@@ -182,7 +181,7 @@ long photon_aprnc_exist_Yofst[] =
 
 int photon_aprnc_exist_length = 3;
 
-Chartlet *photon_aprnc_exist = new Chartlet(&photon_aprnc_exist_element, &photon_aprnc_exist_Xofst, &photon_aprnc_exist_Yofst, photon_aprnc_exist_length);
+Chartlet *p_photon_aprnc_exist = new Chartlet(temp_empty_pointer, &photon_aprnc_exist_element, &photon_aprnc_exist_Xofst, &photon_aprnc_exist_Yofst, photon_aprnc_exist_length);
 
 /*----------------------------*/
 
@@ -203,6 +202,6 @@ long photon_aprnc_gone_Yofst[] =
 
 int photon_aprnc_gone_length = 3;
 
-Chartlet *photon_aprnc_gone = new Chartlet(&photon_aprnc_gone_element, &photon_aprnc_gone_Xofst, &photon_aprnc_gone_Yofst, photon_aprnc_gone_length);
+Chartlet *p_photon_aprnc_gone = new Chartlet(temp_empty_pointer, &photon_aprnc_gone_element, &photon_aprnc_gone_Xofst, &photon_aprnc_gone_Yofst, photon_aprnc_gone_length);
 
 #endif

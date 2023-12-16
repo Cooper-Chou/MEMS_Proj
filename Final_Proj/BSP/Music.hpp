@@ -1,9 +1,9 @@
-#ifndef LYRICS_HPP
-#define LYRICS_HPP
+#ifndef Music_HPP
+#define Music_HPP
 
 #include <wiringPi.h>
 #include <stdio.h>
-#include "bsp.hpp"
+#include "../BSP/bsp.hpp"
 
 #define DO_L 262
 #define RE_L 294
@@ -36,6 +36,7 @@
 
 class Music
 {
+	public:
 	int (*lyrics)[];
 	int length;
 	int current_song_index = 0;
