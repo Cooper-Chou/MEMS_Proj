@@ -20,8 +20,10 @@
 enum Color
 {
     NULL = 0,
-    RED = 1,
-    BLUE = 2
+    RED = 0,
+    BLUE = 1,
+
+    COLOR_NUM
 };
 
 enum GameState
@@ -159,6 +161,7 @@ class GameController : public Controller
     Photon photon;
     RedElectron red_electron;
     BlueElectron blue_electron;
+    StateMachine<GameController> *electron_list[Color::COLOR_NUM];
     GameState game_state;
 
     /*--------------------------------------*/
@@ -178,13 +181,13 @@ class GameController : public Controller
     virtual void Update();
 };
 
-bool ImpactOverlap(StateMachine _A_xon, StateMachine _B_xon)
+bool ImpactOverlap(StateMachine<GameController> *_A_xon, StateMachine<GameController> *_B_xon)
 {
-    float x_dist = _A_xon.x_coor - _B_xon.x_coor;
-    float y_dist = _A_xon.y_coor - _B_xon.y_coor;
+    float x_dist = _A_xon->x_coor - _B_xon->x_coor;
+    float y_dist = _A_xon->y_coor - _B_xon->y_coor;
     float dist = sqrtf(x_dist*x_dist + y_dist*y_dist);
 
-    if(dist - (_A_xon.impact_radius + _B_xon.impact_radius) <= -0.5f)
+    if(dist - (_A_xon->impact_radius + _B_xon->impact_radius) <= -0.5f)
     {
         return true;
     }

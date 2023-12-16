@@ -50,6 +50,7 @@ void ElectronExcitedState::Enter(GameController* _FSM_Owner)
 }
 void ElectronExcitedState::Execute(GameController* _FSM_Owner)
 {
+    _FSM_Owner->game_state = GameState::BATTLE;
     _FSM_Owner->battle_state_remain_ms = EXCITED_STATE_LAST - (millis() - _FSM_Owner->battle_state_entering_tick);
 }
 void ElectronExcitedState::Exit(GameController* _FSM_Owner)
