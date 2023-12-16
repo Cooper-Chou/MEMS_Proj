@@ -64,7 +64,7 @@ void bspLedToggle(int _led_pin)
     }
 }
 
-float bspReadBarVolt(BARS _barPort)
+float bspReadBarVolt(int _barPort)
 {
     return VCC * ((float)analogRead(_barPort)/255.0f);
 }

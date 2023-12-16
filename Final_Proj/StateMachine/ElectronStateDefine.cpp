@@ -1,10 +1,5 @@
 #include "ELectronStateDefine.hpp"
 
-#define EXC_X_VELO_COE 1.3f
-#define EXC_Y_VELO_COE 1.3f
-#define BATTLE_GND_MAX_VELO_COE 1.8f
-#define EXC_IMPACT_RADIUS 7.0f
-#define GND_IMPACT_RADIUS 3.0f
 
 void ElectronGroundState::Init(GameController* _FSM_Owner)
 {

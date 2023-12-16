@@ -9,13 +9,13 @@
 #include "PhotonStateDefine.hpp"
 #include "ElectronStateDefine.hpp"
 #include "HintStateDefine.hpp"
-#include "ElectronStateMachineDefine.hpp"
+#include "XonStateMachineDefine.hpp"
 #include "../GameComponent/Chartlet.hpp"
 #include <cmath>
 
 //此处的速度只是一个相对值，没有单位，只能 大了调小 小了调大 这样子
-#define X_DEFAULT_VELOCITY 800.0f/(float)REFRESH_PERIOD;
-#define Y_DEFAULT_VELOCITY 400.0f/(float)REFRESH_PERIOD;
+#define X_DEFAULT_VELOCITY (800.0f/(float)REFRESH_PERIOD)
+#define Y_DEFAULT_VELOCITY (400.0f/(float)REFRESH_PERIOD)
 
 #define RED_X_COOR 
 
@@ -163,7 +163,7 @@ bool ImpactOverlap(Xon *_A_xon, Xon *_B_xon)
     float y_dist = _A_xon->y_coor - _B_xon->y_coor;
     float dist = sqrtf(x_dist*x_dist + y_dist*y_dist);
 
-    if(dist - (_A_xon->impact_radius + _B_xon->impact_radius) <= -0.5f)
+    if(dist - (_A_xon->GetPCurrentState()->impact_radius + _B_xon->GetPCurrentState()->impact_radius) <= -0.5f)
     {
         return true;
     }

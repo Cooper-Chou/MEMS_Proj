@@ -3,21 +3,24 @@
 
 #include <State.hpp>
 #include "GameController.hpp"
+#include "XonStateMachineDefine.hpp"
 
+#define PHOTON_LAST_MS 5000 /* ms */
+#define PHOTON_INTERVAL_MS 1000 /* ms */
+#define PHOTON_GONE_MS 4000 /* ms */
 
-class PhotonState : public State<GameController>
+#define PHOTON_IMPACT_RADIUS 1.0f
+
+class PhotonExistState : public XonState
 {
     public:
     unsigned int state_entering_tick;
     unsigned int state_remaining_ms;
-    Chartlet chartlet;
-    PhotonState(Chartlet *_chartlet):chartlet(*_chartlet){;}
-};
-
-class PhotonExistState : public PhotonState
-{
-    public:
-    PhotonExistState(Chartlet *_chartlet):PhotonState(_chartlet){;}
+    PhotonExistState(Chartlet *_chartlet):XonState(_chartlet)
+    {
+        x_velo_coe = 0.0f;
+        y_velo_coe = 0.0f;
+    }
     //如果要将父类的纯虚函数实现, 就要在实现的那一级声明!
     virtual void Init(GameController* _FSM_Owner){;}
     virtual void Enter(GameController* _FSM_Owner){;}
@@ -25,10 +28,16 @@ class PhotonExistState : public PhotonState
     virtual void Exit(GameController* _FSM_Owner){;}
 };
 
-class PhotonGoneState : public PhotonState
+class PhotonGoneState : public XonState
 {
     public:
-    PhotonGoneState(Chartlet *_chartlet):PhotonState(_chartlet){;}
+    unsigned int state_entering_tick;
+    unsigned int state_remaining_ms;
+    PhotonGoneState(Chartlet *_chartlet):XonState(_chartlet)
+    {
+        x_velo_coe = 0.0f;
+        y_velo_coe = 0.0f;
+    }
     //如果要将父类的纯虚函数实现, 就要在实现的那一级声明!
     virtual void Init(GameController* _FSM_Owner){;}
     virtual void Enter(GameController* _FSM_Owner){;}
