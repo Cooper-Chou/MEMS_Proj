@@ -1,6 +1,8 @@
 #include "PhotonStateDefine.hpp"
 #include <wiringPi.h>
-
+#include "../GameComponent/Shader.hpp"
+#include <stdlib.h>
+#include "GameController.hpp"
 
 void PhotonExistState::Init(GameController* _FSM_Owner)
 {
@@ -8,18 +10,32 @@ void PhotonExistState::Init(GameController* _FSM_Owner)
 }
 void PhotonExistState::Enter(GameController* _FSM_Owner)
 { 
+    _FSM_Owner->photon_absorbed_flag = 0;
     state_entering_tick = millis();
+
+    //每次光子重新出现都要随机刷新在一个位置
+    srand(state_entering_tick);
+    _FSM_Owner->photon.x_coor = rand() % MAP_WIDTH;
+    _FSM_Owner->photon.y_coor = rand() % MAP_HEIGHT;
 }
 void PhotonExistState::Execute(GameController* _FSM_Owner)
 {
+    state_remaining_ms = PHOTON_LAST_MS - (millis() - state_entering_tick);
+    if(state_remaining_ms <= 0)
+    {
+        _FSM_Owner->photon.ChangeState(&_FSM_Owner->photon.gone_state);
+    }
 }
 void PhotonExistState::Exit(GameController* _FSM_Owner)
 {
 ;
 }
 
-//TODO:光子转换逻辑，然后就要开始尝试编译了！祝我成功！
-
+PhotonGoneState::PhotonGoneState(Chartlet *_chartlet):XonState(_chartlet)
+    {
+        x_velo_coe = 0.0f;
+        y_velo_coe = 0.0f;
+    }
 void PhotonGoneState::Init(GameController* _FSM_Owner)
 {
     impact_radius = PHOTON_IMPACT_RADIUS;
@@ -29,7 +45,22 @@ void PhotonGoneState::Enter(GameController* _FSM_Owner)
     state_entering_tick = millis();
 }
 void PhotonGoneState::Execute(GameController* _FSM_Owner)
-{
+{    
+    //如果光子没有被吸收，是自然死亡，就只消失一小会就再出现
+    if(_FSM_Owner->photon_absorbed_flag == 0)
+    {
+        state_remaining_ms = PHOTON_INTERVAL_MS - (millis() - state_entering_tick);
+    }
+    //如果光子是被吸收掉了，是非自然死亡，就消失久一点
+    else
+    {
+        state_remaining_ms = PHOTON_GONE_MS - (millis() - state_entering_tick);
+    }
+
+    if(state_remaining_ms <= 0)
+    {
+        _FSM_Owner->photon.ChangeState(&_FSM_Owner->photon.exist_state);
+    }
 }
 void PhotonGoneState::Exit(GameController* _FSM_Owner)
 {

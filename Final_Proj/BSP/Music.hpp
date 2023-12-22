@@ -37,18 +37,22 @@
 class Music
 {
 	public:
-	int (*lyrics)[];
+	int *lyrics;
 	int length;
 	int current_song_index = 0;
 	unsigned int last_tick;
-	Music(int (*_lyrics)[], int _length);
+	Music(int* _lyrics, int _length){
+		lyrics = _lyrics;
+		length = _length;
+	}
 	void play()
 	{
 		if(millis() - last_tick >= BEAT)
 		{
+			last_tick = millis();
 			if(current_song_index < length)
 			{
-				bspSetFreq((*lyrics)[current_song_index]);
+				bspSetFreq(lyrics[current_song_index]);
 				current_song_index++;
 			}
 			else
@@ -59,40 +63,34 @@ class Music
 		}
 	}
 };
+extern int redWinSong[];
 
-int redWinSong[] = 
-{
-	MI_M, MI_M, MI_M, RE_M, 
-	MI_M, RE_M, MI_M, SO_M, 
-	SO_M, DO_H, DO_H, XI_M, 
-	XI_M, MI_M, MI_M, RE_M, 
-	MI_M, MI_M, MI_M, RE_M, 
-	MI_M, RE_M, MI_M, DO_H,
-	DO_H, DO_H, DO_H, XI_M, 
-	RE_H, RE_H, MI_M, MI_M, 
-	MI_M, MI_M, MI_M, RE_M,
-	MI_M, RE_M, MI_M, XI_M, 
-	XI_M, DO_H, DO_H, XI_M, 
-	XI_M, MI_M, MI_M, RE_M,
-	MI_M, MI_M, MI_M, RE_M, 
-	MI_M, RE_M, MI_M, XI_M,
-	XI_M, DO_H, DO_H, RE_H,
-	RE_H, RE_H
-};
+extern int redWinSongLength;
 
-int blueWinSong[] = 
-{
+/*--------------------------------------*/
 
-};
+extern int blueWinSong[];
 
-int battleSong[] = 
-{
+extern int blueWinSongLength;
 
-};
+/*--------------------------------------*/
 
-int peaceSong[] = 
-{
+extern int battleSong[];
 
-};
+extern int battleSongLength;
+
+/*--------------------------------------*/
+
+extern int peaceSong[];
+
+extern int peaceSongLength;
+
+
+/*--------------------------------------*/
+
+extern Music* p_redWin;
+extern Music* p_blueWin;
+extern Music* p_battle;
+extern Music* p_peace;
 
 #endif

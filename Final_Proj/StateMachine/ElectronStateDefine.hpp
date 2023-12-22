@@ -2,7 +2,6 @@
 #define ELectronStateDefine_HPP
 
 #include <wiringPi.h>
-#include "GameController.hpp"
 #include "XonStateMachineDefine.hpp"
 
 #define EXCITED_STATE_LAST 7000 /* ms */
@@ -17,7 +16,7 @@ class ElectronGroundState : public XonState
 {
     public:
     //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
-    ElectronGroundState(Chartlet* _chartlet):XonState(_chartlet){;};
+    ElectronGroundState(Chartlet* _chartlet):XonState(_chartlet){}
     virtual void Init(GameController* _FSM_Owner);
     virtual void Enter(GameController* _FSM_Owner);
     virtual void Execute(GameController* _FSM_Owner);
@@ -28,11 +27,14 @@ class ElectronExcitedState : public XonState
 {
     public:
     //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
-    ElectronExcitedState(Chartlet* _chartlet):XonState(_chartlet){;};
+    ElectronExcitedState(Chartlet* _chartlet):XonState(_chartlet){}
     virtual void Init(GameController* _FSM_Owner);
     virtual void Enter(GameController* _FSM_Owner);
     virtual void Execute(GameController* _FSM_Owner);
     virtual void Exit(GameController* _FSM_Owner);
 };
+
+int GetRandomYVeloCoe(int _random_index);
+int GetRandomXVeloCoe(int _random_index);
 
 #endif

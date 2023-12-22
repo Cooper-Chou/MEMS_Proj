@@ -1,7 +1,6 @@
 #include "GameController.hpp"
 #include "../BSP/bsp.hpp"
 #include <wiringPi.h>
-#include "../GameComponent/Shader.hpp"
 
 void GameController::Update()
 {
@@ -40,7 +39,7 @@ void GameController::Update()
         //然后遍历所有电子，由于同一时间只能有一个进攻方，所以只要有与进攻方相撞的，即判进攻方获胜
         for(int i = 0; i < Color::COLOR_NUM; i++)
         {
-            if(ImpactOverlap(p_attacker,electron_list[i]))
+            if(ImpactOverlap(p_attacker,electron_p_list[i]))
             {
                 game_state = GameState::END;
                 game_state_color = p_attacker->color;
@@ -49,6 +48,9 @@ void GameController::Update()
     }
 
     hint_state_machine.Update(); 
+
+    shader.Shade(this);
+    shader.Display();
 }
 
 
@@ -60,6 +62,7 @@ void RedElectron::HandleInput()
 
     if(ImpactOverlap(this, &p_FSM_owner->photon) && p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state)
     {
+        p_FSM_owner->photon_absorbed_flag = 1;
         //如果当前状态是激发态，那么就重置激发态的计时器
         if(p_current_state == &excited_state)
         {
@@ -94,6 +97,7 @@ void BlueElectron::HandleInput()
 
     if(ImpactOverlap(this, &p_FSM_owner->photon) && p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state)
     {
+        p_FSM_owner->photon_absorbed_flag = 1;
         //如果当前状态是激发态，那么就重置激发态的计时器
         if(p_current_state == &excited_state)
         {
@@ -122,10 +126,23 @@ void BlueElectron::HandleInput()
 
 void Photon::HandleInput()
 {
+    ;
 }
 
 void HintStateMachine::HandleInput()
 {
+    if(p_FSM_owner->game_state == GameState::PEACE)
+    {
+        ChangeState(PeaceState::GetInstance());
+    }
+    else if(p_FSM_owner->game_state == GameState::BATTLE)
+    {
+        ChangeState(BattleState::GetInstance());
+    }
+    else if(p_FSM_owner->game_state == GameState::END)
+    {
+        ChangeState(EndState::GetInstance());
+    }
 }   
 
 
@@ -135,8 +152,6 @@ void RedElectron::Init()
     // 这个地方创建了几个实例, 就决定了有几个状态!
     ground_state.Init(this->p_FSM_owner);
     excited_state.Init(this->p_FSM_owner);
-    ground_state.chartlet.SetOwner(this);
-    excited_state.chartlet.SetOwner(this);
     setCurrentState(&ground_state);
 }
 void BlueElectron::Init()
@@ -144,8 +159,6 @@ void BlueElectron::Init()
     // 这个地方创建了几个实例, 就决定了有几个状态!
     ground_state.Init(this->p_FSM_owner);
     excited_state.Init(this->p_FSM_owner);
-    ground_state.chartlet.SetOwner(this);
-    excited_state.chartlet.SetOwner(this);
     setCurrentState(&ground_state);
 }
 void HintStateMachine::Init()
@@ -154,7 +167,7 @@ void HintStateMachine::Init()
     // 提示状态都应该是单例, 所以不需要将状态设置成状态机的成员, 在这里初始化后会自动创建一个单例, 以后只调用这个单例就好!
     PeaceState::GetInstance()->Init(p_FSM_owner);
     BattleState::GetInstance()->Init(p_FSM_owner);
-    EndingState::GetInstance()->Init(p_FSM_owner);
+    EndState::GetInstance()->Init(p_FSM_owner);
     setCurrentState(PeaceState::GetInstance());
 }
 void Photon::Init()
@@ -163,8 +176,6 @@ void Photon::Init()
     // 这个地方创建了几个实例, 就决定了有几个状态!
     exist_state.Init(p_FSM_owner);
     gone_state.Init(p_FSM_owner);
-    exist_state.chartlet.SetOwner(this);
-    gone_state.chartlet.SetOwner(this);
     setCurrentState(&gone_state);
 }
 void GameController::Init()
@@ -173,11 +184,32 @@ void GameController::Init()
     red_electron.Init();
     blue_electron.Init();
     photon.Init();
-    red_electron.SetInitCoor(Shader::MAP_WIDTH / 4, Shader::MAP_HEIGHT / 2);
-    blue_electron.SetInitCoor(3*Shader::MAP_WIDTH / 4, Shader::MAP_HEIGHT / 2);
-    photon.SetInitCoor(Shader::MAP_WIDTH / 2, Shader::MAP_HEIGHT / 2);
-    electron_list[0] = &red_electron;
-    electron_list[1] = &blue_electron;
+    red_electron.SetInitCoor(MAP_WIDTH / 4L, MAP_HEIGHT / 2L);
+    blue_electron.SetInitCoor(3L*MAP_WIDTH / 4L, MAP_HEIGHT / 2L);
+    photon.SetInitCoor(MAP_WIDTH / 2L, MAP_HEIGHT / 2L);
+    electron_p_list[0] = &red_electron;
+    electron_p_list[1] = &blue_electron;
+    for(int i = 0; i < Color::COLOR_NUM; i++)
+    {
+        shading_xon_p_list[i] = electron_p_list[i];
+    }
+    shading_xon_p_list[Color::COLOR_NUM + PHOTON_NUM - 1] = &photon;
+    shader.Init();
 }
 
+bool ImpactOverlap(Xon *_A_xon, Xon *_B_xon)
+{
+    float x_dist = _A_xon->x_coor - _B_xon->x_coor;
+    float y_dist = _A_xon->y_coor - _B_xon->y_coor;
+    float dist = sqrtf(x_dist*x_dist + y_dist*y_dist);
+
+    if(dist - (_A_xon->GetPCurrentState()->impact_radius + _B_xon->GetPCurrentState()->impact_radius) <= -0.5f)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 

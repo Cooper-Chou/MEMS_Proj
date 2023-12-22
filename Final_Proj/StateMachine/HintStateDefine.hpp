@@ -7,31 +7,28 @@
 #include "../BSP/bsp.hpp"
 #include "../BSP/Music.hpp"
 #include "ElectronStateDefine.hpp"
-#include "GameController.hpp"
+#include "XonStateMachineDefine.hpp"
 
 #define MAX_LED_BLINK_PERIOD 800 /* ms */
 #define MIN_LED_BLINK_PERIOD 100 /* ms */
 #define BEAT 300 /* ms */
 #define LED_BLINK_PERIOD_LEVEL 5 //LED闪烁频率分成五个档次
 
+class GameController;
 
-void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
-{
-    unsigned int current_tick = millis();
-   if(current_tick - _last_tick >= _blink_period / 2)
-    {
-        _last_tick = current_tick;
-        bspLedToggle(_led_pin);
-    }
-}
+void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick);
 
 class PeaceState : public State<GameController>
 {
     private:
-        static PeaceState *m_pInstance;
+        inline static PeaceState *m_pInstance;
     
     public:    
         Music *p_music;
+        PeaceState()
+        {
+            m_pInstance = nullptr;
+        }
 
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
@@ -51,11 +48,14 @@ class PeaceState : public State<GameController>
 class BattleState : public State<GameController>
 {
     private:
-        static BattleState *m_pInstance;
+        inline static BattleState *m_pInstance;
     
     public:    
         Music *p_music;
-        Color Attacking_color;
+        BattleState()
+        {
+            m_pInstance = nullptr;
+        }
 
         unsigned int led_blink_period;
         unsigned int last_led_tick;
@@ -75,30 +75,33 @@ class BattleState : public State<GameController>
         }
 };
 
-class EndingState : public State<GameController>
+class EndState : public State<GameController>
 {
     private:
-        static EndingState *m_pInstance;
+        inline static EndState *m_pInstance;
 
     public:
         Music *red_win_p_music;
         Music *blue_win_p_music;
+        EndState()
+        {
+            m_pInstance = nullptr;
+        }
 
         unsigned int led_blink_period;
         unsigned int last_led_tick_green;
         unsigned int last_led_tick_winner;
-        Color winner_color;
 
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
         virtual void Execute(GameController* _FSM_Owner);
         virtual void Exit(GameController* _FSM_Owner);
 
-        static EndingState* GetInstance()
+        static EndState* GetInstance()
         {
             if(m_pInstance == nullptr)
             {
-                m_pInstance = new EndingState();
+                m_pInstance = new EndState();
             }
             return m_pInstance;
         }

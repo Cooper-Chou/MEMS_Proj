@@ -15,7 +15,7 @@ void bspInit()
     //初始化连接失败时，将消息打印到屏幕
 	if(wiringPiSetup() == -1)
 	{
-		printf("setup wiringPi failed !");
+		printf("setup wiringPi failed !\n");
 	}
 
 	pinMode(GPIO_RED, OUTPUT);

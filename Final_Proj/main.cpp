@@ -1,9 +1,10 @@
-#include "GameController.hpp"
+#include "BSP/bsp.hpp"
+#include "StateMachine/GameController.hpp"
 #include <wiringPi.h>
 
 int main()
 {
-    GameController game_controller;
+    bspInit();
     unsigned int last_tick = millis();
     while(1)
     {
@@ -11,7 +12,7 @@ int main()
         if(current_tick - last_tick >= REFRESH_PERIOD)
         {
             last_tick = current_tick;
-            game_controller.Update();
+            GameController::GetInstance()->Update();
         }
     }
     return 0;

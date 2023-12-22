@@ -11,7 +11,7 @@ class StateMachine
     State<controller> *p_current_state;
     
     public:
-    StateMachine(controller* _FSM_Owner) : _FSM_Owner(_FSM_Owner),p_current_state(nullptr)
+    StateMachine(controller* _FSM_Owner) : p_FSM_owner(_FSM_Owner),p_current_state(nullptr)
     {}
 
     void setCurrentState(State<controller> *p_state)

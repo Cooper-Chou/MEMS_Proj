@@ -1,27 +1,33 @@
 #ifndef XonStateMachineDefine_HPP
 #define XonStateMachineDefine_HPP
 
-#include "GameController.hpp"
 #include "../GameComponent/Chartlet.hpp"
+
+class GameController;
+
+enum Color
+{
+    NO_COLOR = 0,
+    RED = 0,
+    BLUE = 1,
+
+    COLOR_NUM
+};
 
 class XonState
 {
-    public:    
-    Chartlet chartlet;
+    public:
+    Chartlet* p_chartlet;
     float x_velo_coe;
     float y_velo_coe;
-    float impact_radius; //碰撞半径
-    XonState(Chartlet* _chartlet):chartlet(*_chartlet){;};
+    float impact_radius;
+
+    XonState(Chartlet* _p_chartlet):p_chartlet(_p_chartlet){;}
     //The "=0" at the end means the function is purely virtual, that must not be defined in this class.
     virtual void Init(GameController* _FSM_Owner) = 0;
     virtual void Enter(GameController* _FSM_Owner) = 0;
     virtual void Execute(GameController* _FSM_Owner) = 0;
     virtual void Exit(GameController* _FSM_Owner) = 0;
-
-    XonState* GetPInstance()
-    {
-        return this;
-    }
 };
 
 class Xon
@@ -36,7 +42,7 @@ class Xon
     XonState *p_current_state;
     
     public:
-    Xon(GameController* _FSM_Owner, Color _color):color(_color)
+    Xon(GameController* _FSM_Owner, Color _color):p_FSM_owner(_FSM_Owner),color(_color),p_current_state(nullptr)
     {;}
 
     void setCurrentState(XonState *p_state)
@@ -60,20 +66,17 @@ class Xon
             p_current_state->Enter(p_FSM_owner);
         }
     }
-    
-    virtual void Init();
-    virtual void HandleInput();
-
     void SetInitCoor(long _x_coor, long _y_coor)
     {
         x_coor = _x_coor;
         y_coor = _y_coor;
     }
-
     XonState* GetPCurrentState()
     {
         return p_current_state;
     }
+    virtual void Init() {};            // Need implement
+    virtual void HandleInput() {};     // Need implement
 };
 
 #endif

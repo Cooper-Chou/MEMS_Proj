@@ -1,5 +1,5 @@
-#include "ELectronStateDefine.hpp"
-
+#include "ElectronStateDefine.hpp"
+#include "GameController.hpp"
 
 void ElectronGroundState::Init(GameController* _FSM_Owner)
 {
@@ -13,12 +13,12 @@ void ElectronGroundState::Enter(GameController* _FSM_Owner)
 }
 void ElectronGroundState::Execute(GameController* _FSM_Owner)
 {
+    srand(_FSM_Owner->battle_state_entering_tick); //以进入激发态的时间为种子
     //处于战斗状态的基态电子需要某个方向的额外加速
     if(_FSM_Owner->game_state == GameState::BATTLE)
     {
-        int random_index = rand() % 8;
-        x_velo_coe = GetRandomXVeloCoe(random_index);
-        y_velo_coe = GetRandomYVeloCoe(random_index);
+        x_velo_coe = GetRandomXVeloCoe(rand() % 8);
+        y_velo_coe = GetRandomYVeloCoe(rand() % 8);
     }
     else
     {
@@ -41,7 +41,6 @@ void ElectronExcitedState::Enter(GameController* _FSM_Owner)
 {
     _FSM_Owner->game_state = GameState::BATTLE;
     _FSM_Owner->battle_state_entering_tick = millis();
-    srand(micros()); //以进入激发态的时间为种子
 }
 void ElectronExcitedState::Execute(GameController* _FSM_Owner)
 {
