@@ -40,7 +40,7 @@ class Music
 	int *lyrics;
 	int length;
 	int current_song_index = 0;
-	unsigned int last_tick;
+	int last_tick;
 	Music(int* _lyrics, int _length){
 		lyrics = _lyrics;
 		length = _length;

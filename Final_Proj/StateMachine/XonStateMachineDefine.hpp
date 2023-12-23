@@ -33,8 +33,9 @@ class XonState
 class Xon
 {
     public:
-    long x_coor;
-    long y_coor;
+    //此处坐标不包含边框!!!
+    int x_coor;
+    int y_coor;
     Color color;
 
     protected:
@@ -66,7 +67,7 @@ class Xon
             p_current_state->Enter(p_FSM_owner);
         }
     }
-    void SetInitCoor(long _x_coor, long _y_coor)
+    void SetInitCoor(int _x_coor, int _y_coor)
     {
         x_coor = _x_coor;
         y_coor = _y_coor;

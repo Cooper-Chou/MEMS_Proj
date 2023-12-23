@@ -4,7 +4,7 @@
 #include "../../C_FSM/State.hpp"
 #include "../../C_FSM/StateMachine.hpp"
 #include "../BSP/bsp.hpp"
-#include <Controller.hpp>
+#include "../../C_FSM/Controller.hpp"
 #include <stdint.h>
 #include <stdio.h>
 
@@ -18,8 +18,8 @@
 #include <cmath>
 
 //此处的速度只是一个相对值，没有单位，只能 大了调小 小了调大 这样子
-#define X_DEFAULT_VELOCITY (800.0f / (float)REFRESH_PERIOD)
-#define Y_DEFAULT_VELOCITY (400.0f / (float)REFRESH_PERIOD)
+#define X_DEFAULT_VELOCITY (100.0f / (float)REFRESH_PERIOD)
+#define Y_DEFAULT_VELOCITY (50.0f / (float)REFRESH_PERIOD)
 
 #define PHOTON_NUM 1
 
@@ -89,9 +89,9 @@ private:
   inline static GameController *m_pInstance;
 
 public:
-  unsigned int last_tick;
-  unsigned int battle_state_entering_tick;
-  unsigned int battle_state_remain_ms;
+  int last_tick;
+  int battle_state_entering_tick;
+  int battle_state_remain_ms;
   int photon_absorbed_flag;
 
   HintStateMachine hint_state_machine;
@@ -129,6 +129,12 @@ public:
 };
 
 bool ImpactOverlap(Xon *_A_xon, Xon *_B_xon);
+
+extern int battle_hint_Xofst[][2];
+
+extern int battle_hint_Yofst[][2];
+
+extern char battle_hint_aprnc[];
 
 // TODO:速度重分配，计算碰撞，动量守恒，如果有条件就做碰撞！没有就算了！
 // void VeloRedistribute();

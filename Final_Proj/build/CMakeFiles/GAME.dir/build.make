@@ -79,119 +79,119 @@ include CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/main.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/main.cpp.o: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GAME.dir/main.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/main.cpp.o -c /home/cooper/MicroComProj/Final_Proj/main.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/main.cpp.o -c /home/cooper/MicroComProj/Final_Proj/main.cpp
 
 CMakeFiles/GAME.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/main.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/main.cpp > CMakeFiles/GAME.dir/main.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/main.cpp > CMakeFiles/GAME.dir/main.cpp.i
 
 CMakeFiles/GAME.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/main.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/main.cpp -o CMakeFiles/GAME.dir/main.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/main.cpp -o CMakeFiles/GAME.dir/main.cpp.s
 
 CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.o: ../GameComponent/Chartlet.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.o -c /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.o -c /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.cpp
 
 CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.cpp > CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.cpp > CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.i
 
 CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.cpp -o CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.cpp -o CMakeFiles/GAME.dir/GameComponent/Chartlet.cpp.s
 
 CMakeFiles/GAME.dir/GameComponent/Shader.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/GameComponent/Shader.cpp.o: ../GameComponent/Shader.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GAME.dir/GameComponent/Shader.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/GameComponent/Shader.cpp.o -c /home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/GameComponent/Shader.cpp.o -c /home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.cpp
 
 CMakeFiles/GAME.dir/GameComponent/Shader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/GameComponent/Shader.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.cpp > CMakeFiles/GAME.dir/GameComponent/Shader.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.cpp > CMakeFiles/GAME.dir/GameComponent/Shader.cpp.i
 
 CMakeFiles/GAME.dir/GameComponent/Shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/GameComponent/Shader.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.cpp -o CMakeFiles/GAME.dir/GameComponent/Shader.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.cpp -o CMakeFiles/GAME.dir/GameComponent/Shader.cpp.s
 
 CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.o: ../StateMachine/ElectronStateDefine.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp
 
 CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp > CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp > CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.i
 
 CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp -o CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp -o CMakeFiles/GAME.dir/StateMachine/ElectronStateDefine.cpp.s
 
 CMakeFiles/GAME.dir/StateMachine/GameController.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/StateMachine/GameController.cpp.o: ../StateMachine/GameController.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GAME.dir/StateMachine/GameController.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/GameController.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/GameController.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp
 
 CMakeFiles/GAME.dir/StateMachine/GameController.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/StateMachine/GameController.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp > CMakeFiles/GAME.dir/StateMachine/GameController.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp > CMakeFiles/GAME.dir/StateMachine/GameController.cpp.i
 
 CMakeFiles/GAME.dir/StateMachine/GameController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/StateMachine/GameController.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp -o CMakeFiles/GAME.dir/StateMachine/GameController.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp -o CMakeFiles/GAME.dir/StateMachine/GameController.cpp.s
 
 CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.o: ../StateMachine/HintStateDefine.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp
 
 CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp > CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp > CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.i
 
 CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp -o CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp -o CMakeFiles/GAME.dir/StateMachine/HintStateDefine.cpp.s
 
 CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.o: ../StateMachine/PhotonStateDefine.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.o -c /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp
 
 CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp > CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp > CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.i
 
 CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp -o CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp -o CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.s
 
 CMakeFiles/GAME.dir/BSP/Music.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/BSP/Music.cpp.o: ../BSP/Music.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GAME.dir/BSP/Music.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/BSP/Music.cpp.o -c /home/cooper/MicroComProj/Final_Proj/BSP/Music.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/BSP/Music.cpp.o -c /home/cooper/MicroComProj/Final_Proj/BSP/Music.cpp
 
 CMakeFiles/GAME.dir/BSP/Music.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/BSP/Music.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/BSP/Music.cpp > CMakeFiles/GAME.dir/BSP/Music.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/BSP/Music.cpp > CMakeFiles/GAME.dir/BSP/Music.cpp.i
 
 CMakeFiles/GAME.dir/BSP/Music.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/BSP/Music.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/BSP/Music.cpp -o CMakeFiles/GAME.dir/BSP/Music.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/BSP/Music.cpp -o CMakeFiles/GAME.dir/BSP/Music.cpp.s
 
 CMakeFiles/GAME.dir/BSP/bsp.cpp.o: CMakeFiles/GAME.dir/flags.make
 CMakeFiles/GAME.dir/BSP/bsp.cpp.o: ../BSP/bsp.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GAME.dir/BSP/bsp.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/BSP/bsp.cpp.o -c /home/cooper/MicroComProj/Final_Proj/BSP/bsp.cpp
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GAME.dir/BSP/bsp.cpp.o -c /home/cooper/MicroComProj/Final_Proj/BSP/bsp.cpp
 
 CMakeFiles/GAME.dir/BSP/bsp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GAME.dir/BSP/bsp.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/BSP/bsp.cpp > CMakeFiles/GAME.dir/BSP/bsp.cpp.i
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cooper/MicroComProj/Final_Proj/BSP/bsp.cpp > CMakeFiles/GAME.dir/BSP/bsp.cpp.i
 
 CMakeFiles/GAME.dir/BSP/bsp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GAME.dir/BSP/bsp.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/BSP/bsp.cpp -o CMakeFiles/GAME.dir/BSP/bsp.cpp.s
+	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cooper/MicroComProj/Final_Proj/BSP/bsp.cpp -o CMakeFiles/GAME.dir/BSP/bsp.cpp.s
 
 # Object files for target GAME
 GAME_OBJECTS = \

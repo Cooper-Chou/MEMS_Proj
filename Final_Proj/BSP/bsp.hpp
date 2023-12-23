@@ -12,10 +12,10 @@
 #define AI2 (BASE+2)
 #define AI3 (BASE+3)
 
-#define RED_BAR_X AI0
-#define RED_BAR_Y AI1
-#define BLUE_BAR_X AI2
-#define BLUE_BAR_Y AI3
+#define RED_BAR_X AI1
+#define RED_BAR_Y AI0
+#define BLUE_BAR_X AI3
+#define BLUE_BAR_Y AI2
 
 #define VCC 5.0f
 

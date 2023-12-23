@@ -22,10 +22,11 @@ class Shader
     void Display();
     void RefreshMap();
     void Close();
+    void AppendElement(int _element_x_coor, int _element_y_coor, char* _element_aprnc, int* _element_Xofst, int* _element_Yofst, int _element_length);
 };
 
-extern long MAP_WIDTH;
-extern long MAP_HEIGHT;
+extern int MAP_WIDTH;
+extern int MAP_HEIGHT;
 
 
 #endif

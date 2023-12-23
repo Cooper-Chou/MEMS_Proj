@@ -21,10 +21,10 @@ BUILD_TESTING:BOOL=ON
 BZRCOMMAND:FILEPATH=BZRCOMMAND-NOTFOUND
 
 //Path to a program.
-CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
+CMAKE_ADDR2LINE:FILEPATH=/usr/bin/arm-linux-gnueabihf-addr2line
 
 //Path to a program.
-CMAKE_AR:FILEPATH=/usr/bin/ar
+CMAKE_AR:FILEPATH=/usr/bin/arm-linux-gnueabihf-ar
 
 //No help, variable specified on the command line.
 CMAKE_BUILD_TYPE:STRING=Debug
@@ -33,13 +33,15 @@ CMAKE_BUILD_TYPE:STRING=Debug
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //No help, variable specified on the command line.
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-linux-gnueabihf-g++
 
-//LLVM archiver
-CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/lib/llvm-11/bin/llvm-ar
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/arm-linux-gnueabihf-gcc-ar-10
 
-//Generate index for LLVM archive
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/lib/llvm-11/bin/llvm-ranlib
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/arm-linux-gnueabihf-gcc-ranlib-10
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -57,13 +59,15 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //No help, variable specified on the command line.
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/clang
+CMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-linux-gnueabihf-gcc
 
-//LLVM archiver
-CMAKE_C_COMPILER_AR:FILEPATH=/usr/lib/llvm-11/bin/llvm-ar
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/arm-linux-gnueabihf-gcc-ar-10
 
-//Generate index for LLVM archive
-CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/lib/llvm-11/bin/llvm-ranlib
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/arm-linux-gnueabihf-gcc-ranlib-10
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -105,7 +109,7 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
 //Path to a program.
-CMAKE_LINKER:FILEPATH=/usr/bin/ld
+CMAKE_LINKER:FILEPATH=/usr/bin/arm-linux-gnueabihf-ld
 
 //Path to a program.
 CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/gmake
@@ -131,13 +135,13 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_NM:FILEPATH=/usr/bin/nm
+CMAKE_NM:FILEPATH=/usr/bin/arm-linux-gnueabihf-nm
 
 //Path to a program.
-CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
+CMAKE_OBJCOPY:FILEPATH=/usr/bin/arm-linux-gnueabihf-objcopy
 
 //Path to a program.
-CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
+CMAKE_OBJDUMP:FILEPATH=/usr/bin/arm-linux-gnueabihf-objdump
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -164,10 +168,10 @@ CMAKE_PROJECT_VERSION_PATCH:STATIC=0
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
-CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
+CMAKE_RANLIB:FILEPATH=/usr/bin/arm-linux-gnueabihf-ranlib
 
 //Path to a program.
-CMAKE_READELF:FILEPATH=/usr/bin/readelf
+CMAKE_READELF:FILEPATH=/usr/bin/arm-linux-gnueabihf-readelf
 
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
@@ -217,7 +221,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
-CMAKE_STRIP:FILEPATH=/usr/bin/strip
+CMAKE_STRIP:FILEPATH=/usr/bin/arm-linux-gnueabihf-strip
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -319,12 +323,6 @@ MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
 //Path to a program.
 P4COMMAND:FILEPATH=P4COMMAND-NOTFOUND
 
-//Value Computed by CMake
-Project_BINARY_DIR:STATIC=/home/cooper/MicroComProj/Final_Proj/build
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/home/cooper/MicroComProj/Final_Proj
-
 //Name of the computer/site where compile is being run
 SITE:STRING=raspberrypi
 
@@ -412,6 +410,8 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
+CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.

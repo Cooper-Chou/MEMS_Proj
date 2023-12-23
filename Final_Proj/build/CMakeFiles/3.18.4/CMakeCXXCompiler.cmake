@@ -1,7 +1,7 @@
-set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+set(CMAKE_CXX_COMPILER "/usr/bin/arm-linux-gnueabihf-g++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
-set(CMAKE_CXX_COMPILER_ID "Clang")
-set(CMAKE_CXX_COMPILER_VERSION "11.0.1")
+set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_VERSION "10.2.1")
 set(CMAKE_CXX_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_CXX_COMPILER_WRAPPER "")
 set(CMAKE_CXX_STANDARD_COMPUTED_DEFAULT "14")
@@ -14,19 +14,19 @@ set(CMAKE_CXX20_COMPILE_FEATURES "cxx_std_20")
 
 set(CMAKE_CXX_PLATFORM_ID "Linux")
 set(CMAKE_CXX_SIMULATE_ID "")
-set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "GNU")
+set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "")
 set(CMAKE_CXX_SIMULATE_VERSION "")
 
 
 
 
-set(CMAKE_AR "/usr/bin/ar")
-set(CMAKE_CXX_COMPILER_AR "/usr/lib/llvm-11/bin/llvm-ar")
-set(CMAKE_RANLIB "/usr/bin/ranlib")
-set(CMAKE_CXX_COMPILER_RANLIB "/usr/lib/llvm-11/bin/llvm-ranlib")
-set(CMAKE_LINKER "/usr/bin/ld")
+set(CMAKE_AR "/usr/bin/arm-linux-gnueabihf-ar")
+set(CMAKE_CXX_COMPILER_AR "/usr/bin/arm-linux-gnueabihf-gcc-ar-10")
+set(CMAKE_RANLIB "/usr/bin/arm-linux-gnueabihf-ranlib")
+set(CMAKE_CXX_COMPILER_RANLIB "/usr/bin/arm-linux-gnueabihf-gcc-ranlib-10")
+set(CMAKE_LINKER "/usr/bin/arm-linux-gnueabihf-ld")
 set(CMAKE_MT "")
-set(CMAKE_COMPILER_IS_GNUCXX )
+set(CMAKE_COMPILER_IS_GNUCXX 1)
 set(CMAKE_CXX_COMPILER_LOADED 1)
 set(CMAKE_CXX_COMPILER_WORKS TRUE)
 set(CMAKE_CXX_ABI_COMPILED TRUE)
@@ -58,9 +58,9 @@ set(CMAKE_CXX_LINKER_PREFERENCE 30)
 set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)
 
 # Save compiler ABI information.
-set(CMAKE_CXX_SIZEOF_DATA_PTR "8")
+set(CMAKE_CXX_SIZEOF_DATA_PTR "4")
 set(CMAKE_CXX_COMPILER_ABI "ELF")
-set(CMAKE_CXX_LIBRARY_ARCHITECTURE "aarch64-linux-gnu")
+set(CMAKE_CXX_LIBRARY_ARCHITECTURE "arm-linux-gnueabihf")
 
 if(CMAKE_CXX_SIZEOF_DATA_PTR)
   set(CMAKE_SIZEOF_VOID_P "${CMAKE_CXX_SIZEOF_DATA_PTR}")
@@ -71,7 +71,7 @@ if(CMAKE_CXX_COMPILER_ABI)
 endif()
 
 if(CMAKE_CXX_LIBRARY_ARCHITECTURE)
-  set(CMAKE_LIBRARY_ARCHITECTURE "aarch64-linux-gnu")
+  set(CMAKE_LIBRARY_ARCHITECTURE "arm-linux-gnueabihf")
 endif()
 
 set(CMAKE_CXX_CL_SHOWINCLUDES_PREFIX "")
@@ -83,7 +83,7 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/home/cooper/MicroComProj/C_FSM;/usr/include/c++/10;/usr/include/aarch64-linux-gnu/c++/10;/usr/include/c++/10/backward;/usr/local/include;/usr/lib/llvm-11/lib/clang/11.0.1/include;/usr/include/aarch64-linux-gnu;/usr/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/usr/include/c++/10;/usr/include/arm-linux-gnueabihf/c++/10;/usr/include/c++/10/backward;/usr/lib/gcc/arm-linux-gnueabihf/10/include;/usr/local/include;/usr/include/arm-linux-gnueabihf;/usr/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;gcc_s;gcc;c;gcc_s;gcc")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/aarch64-linux-gnu/10;/usr/lib/aarch64-linux-gnu;/lib/aarch64-linux-gnu;/usr/lib;/usr/lib/llvm-11/lib;/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/arm-linux-gnueabihf/10;/usr/lib/arm-linux-gnueabihf;/usr/lib;/lib/arm-linux-gnueabihf")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

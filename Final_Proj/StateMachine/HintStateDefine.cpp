@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include "GameController.hpp"
 
-void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick)
+void ledBlink(int _led_pin, int _blink_period, int _last_tick)
 {
-    unsigned int current_tick = millis();
+    int current_tick = millis();
    if(current_tick - _last_tick >= _blink_period / 2)
     {
         _last_tick = current_tick;

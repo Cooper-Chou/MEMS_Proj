@@ -67,7 +67,7 @@ set(CPACK_SOURCE_TZ "ON")
 set(CPACK_SOURCE_ZIP "OFF")
 set(CPACK_SYSTEM_NAME "Linux")
 set(CPACK_TOPLEVEL_TAG "Linux")
-set(CPACK_WIX_SIZEOF_VOID_P "8")
+set(CPACK_WIX_SIZEOF_VOID_P "4")
 
 if(NOT CPACK_PROPERTIES_FILE)
   set(CPACK_PROPERTIES_FILE "/home/cooper/MicroComProj/Final_Proj/build/CPackProperties.cmake")

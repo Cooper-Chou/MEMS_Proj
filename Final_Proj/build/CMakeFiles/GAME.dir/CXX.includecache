@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/cooper/MicroComProj/C_FSM/Controller.hpp
+stdint.h
+-
+
 /home/cooper/MicroComProj/C_FSM/State.hpp
 
 /home/cooper/MicroComProj/C_FSM/StateMachine.hpp
@@ -52,11 +56,27 @@ stdio.h
 Chartlet.hpp
 /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.hpp
 
+/home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.cpp
+ElectronStateDefine.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.hpp
+GameController.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.hpp
+
 /home/cooper/MicroComProj/Final_Proj/StateMachine/ElectronStateDefine.hpp
 wiringPi.h
 -
 XonStateMachineDefine.hpp
 /home/cooper/MicroComProj/Final_Proj/StateMachine/XonStateMachineDefine.hpp
+
+/home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.cpp
+GameController.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.hpp
+../BSP/bsp.hpp
+/home/cooper/MicroComProj/Final_Proj/BSP/bsp.hpp
+wiringPi.h
+-
+../GameComponent/MATH.h
+/home/cooper/MicroComProj/Final_Proj/GameComponent/MATH.h
 
 /home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.hpp
 ../../C_FSM/State.hpp
@@ -65,8 +85,8 @@ XonStateMachineDefine.hpp
 /home/cooper/MicroComProj/C_FSM/StateMachine.hpp
 ../BSP/bsp.hpp
 /home/cooper/MicroComProj/Final_Proj/BSP/bsp.hpp
-Controller.hpp
--
+../../C_FSM/Controller.hpp
+/home/cooper/MicroComProj/C_FSM/Controller.hpp
 stdint.h
 -
 stdio.h
@@ -86,9 +106,19 @@ XonStateMachineDefine.hpp
 cmath
 -
 
+/home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.cpp
+HintStateDefine.hpp
 /home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.hpp
-State.hpp
+../BSP/bsp.hpp
+/home/cooper/MicroComProj/Final_Proj/BSP/bsp.hpp
+stdio.h
 -
+GameController.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.hpp
+
+/home/cooper/MicroComProj/Final_Proj/StateMachine/HintStateDefine.hpp
+../../C_FSM/State.hpp
+/home/cooper/MicroComProj/C_FSM/State.hpp
 stdint.h
 -
 wiringPi.h
@@ -102,6 +132,18 @@ ElectronStateDefine.hpp
 XonStateMachineDefine.hpp
 /home/cooper/MicroComProj/Final_Proj/StateMachine/XonStateMachineDefine.hpp
 
+/home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp
+PhotonStateDefine.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.hpp
+wiringPi.h
+-
+../GameComponent/Shader.hpp
+/home/cooper/MicroComProj/Final_Proj/GameComponent/Shader.hpp
+stdlib.h
+-
+GameController.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.hpp
+
 /home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.hpp
 XonStateMachineDefine.hpp
 /home/cooper/MicroComProj/Final_Proj/StateMachine/XonStateMachineDefine.hpp
@@ -111,4 +153,12 @@ XonStateMachineDefine.hpp
 /home/cooper/MicroComProj/Final_Proj/StateMachine/XonStateMachineDefine.hpp
 ../GameComponent/Chartlet.hpp
 /home/cooper/MicroComProj/Final_Proj/GameComponent/Chartlet.hpp
+
+/home/cooper/MicroComProj/Final_Proj/main.cpp
+BSP/bsp.hpp
+/home/cooper/MicroComProj/Final_Proj/BSP/bsp.hpp
+StateMachine/GameController.hpp
+/home/cooper/MicroComProj/Final_Proj/StateMachine/GameController.hpp
+wiringPi.h
+-
 

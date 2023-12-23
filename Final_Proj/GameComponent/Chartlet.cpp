@@ -7,18 +7,18 @@ char gnd_aprnc_1_element[] =
       '\\','-','O','-','/'
 };
 
-long gnd_aprnc_1_Xofst[] =
+int gnd_aprnc_1_Xofst[] =
 {
-    -2L, -1L, 0L, 1L, 2L,
-    -3L, -2L, -1L, 0L, 1L, 2L, 3L,
-    -2L, -1L, 0L, 1L, 2L
+    -2, -1, 0, 1, 2,
+    -3, -2, -1, 0, 1, 2, 3,
+    -2, -1, 0, 1, 2
 };
 
-long gnd_aprnc_1_Yofst[] =
+int gnd_aprnc_1_Yofst[] =
 {
-    1L, 1L, 1L, 1L, 1L, 
-    0L, 0L, 0L, 0L, 0L, 0L, 0L, 
-    -1L, -1L, -1L, -1L, -1L
+    1, 1, 1, 1, 1, 
+    0, 0, 0, 0, 0, 0, 0, 
+    -1, -1, -1, -1, -1
 };
 
 int gnd_aprnc_1_length = 17;
@@ -32,18 +32,18 @@ char gnd_aprnc_2_element[] =
       '\\','-','O','-','/'
 };
 
-long gnd_aprnc_2_Xofst[] =
+int gnd_aprnc_2_Xofst[] =
 {
-    -2L, -1L, 0L, 1L, 2L,
-    -3L, -2L, -1L, 0L, 1L, 2L, 3L,
-    -2L, -1L, 0L, 1L, 2L
+    -2, -1, 0, 1, 2,
+    -3, -2, -1, 0, 1, 2, 3,
+    -2, -1, 0, 1, 2
 };
 
-long gnd_aprnc_2_Yofst[] =
+int gnd_aprnc_2_Yofst[] =
 {
-    1L, 1L, 1L, 1L, 1L, 
-    0L, 0L, 0L, 0L, 0L, 0L, 0L, 
-    -1L, -1L, -1L, -1L, -1L
+    1, 1, 1, 1, 1, 
+    0, 0, 0, 0, 0, 0, 0, 
+    -1, -1, -1, -1, -1
 };
 
 int gnd_aprnc_2_length = 17;
@@ -59,25 +59,25 @@ char exc_aprnc_1_element[] =
                 'V','-','V','-','V'
 };
 
-long exc_aprnc_1_Xofst[] =
+int exc_aprnc_1_Xofst[] =
 {
-    -2L, -1L, 0L, 1L, 2L,
-    -5L, -4L, -3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L,
-    -7L, -6L, -5L, -4L, -3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L,
-    -5L, -4L, -3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L,
-    -2L, -1L, 0L, 1L, 2L
+    -2, -1, 0, 1, 2,
+    -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+    -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6,
+    -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+    -2, -1, 0, 1, 2
 };
 
-long exc_aprnc_1_Yofst[] =
+int exc_aprnc_1_Yofst[] =
 {
-    2L, 2L, 2L, 2L, 2L,  
-    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
-    0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 
-    -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, 
-    -2L, -2L, -2L, -2L, -2L
+    2, 2, 2, 2, 2,  
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+    -2, -2, -2, -2, -2
 };
 
-int exc_aprnc_1_length = 52;
+int exc_aprnc_1_length = 45;
 
 /*----------------------------*/
 
@@ -90,25 +90,25 @@ char exc_aprnc_2_element[] =
                 'V','-','V','-','V'
 };
 
-long exc_aprnc_2_Xofst[] =
+int exc_aprnc_2_Xofst[] =
 {
-    -2L, -1L, 0L, 1L, 2L,
-    -5L, -4L, -3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L,
-    -7L, -6L, -5L, -4L, -3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L,
-    -5L, -4L, -3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L,
-    -2L, -1L, 0L, 1L, 2L
+    -2, -1, 0, 1, 2,
+    -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+    -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6,
+    -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+    -2, -1, 0, 1, 2
 };
 
-long exc_aprnc_2_Yofst[] =
+int exc_aprnc_2_Yofst[] =
 {
-    2L, 2L, 2L, 2L, 2L,  
-    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
-    0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 
-    -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, 
-    -2L, -2L, -2L, -2L, -2L
+    2, 2, 2, 2, 2,  
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+    -2, -2, -2, -2, -2
 };
 
-int exc_aprnc_2_length = 52;
+int exc_aprnc_2_length = 45;
 
 /*----------------------------*/
 
@@ -117,14 +117,14 @@ char photon_aprnc_exist_element[] =
     '(','$',')'
 };
 
-long photon_aprnc_exist_Xofst[] = 
+int photon_aprnc_exist_Xofst[] = 
 {
-    -1L, 0L, 1L
+    -1, 0, 1
 };
 
-long photon_aprnc_exist_Yofst[] = 
+int photon_aprnc_exist_Yofst[] = 
 {
-    0L, 0L, 0L
+    0, 0, 0
 };
 
 int photon_aprnc_exist_length = 3;
@@ -136,14 +136,14 @@ char photon_aprnc_gone_element[] =
     ' ',' ',' '
 };
 
-long photon_aprnc_gone_Xofst[] = 
+int photon_aprnc_gone_Xofst[] = 
 {
-    -1L, 0L, 1L
+    -1, 0, 1
 };
 
-long photon_aprnc_gone_Yofst[] = 
+int photon_aprnc_gone_Yofst[] = 
 {
-    0L, 0L, 0L
+    0, 0, 0
 };
 
 int photon_aprnc_gone_length = 3;

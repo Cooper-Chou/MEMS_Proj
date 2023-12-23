@@ -14,11 +14,12 @@ void ElectronGroundState::Enter(GameController* _FSM_Owner)
 void ElectronGroundState::Execute(GameController* _FSM_Owner)
 {
     srand(_FSM_Owner->battle_state_entering_tick); //以进入激发态的时间为种子
+    m_random_num = rand() % 8;
     //处于战斗状态的基态电子需要某个方向的额外加速
     if(_FSM_Owner->game_state == GameState::BATTLE)
     {
-        x_velo_coe = GetRandomXVeloCoe(rand() % 8);
-        y_velo_coe = GetRandomYVeloCoe(rand() % 8);
+        x_velo_coe = GetRandomXVeloCoe(m_random_num);
+        y_velo_coe = GetRandomYVeloCoe(m_random_num);
     }
     else
     {
@@ -41,6 +42,7 @@ void ElectronExcitedState::Enter(GameController* _FSM_Owner)
 {
     _FSM_Owner->game_state = GameState::BATTLE;
     _FSM_Owner->battle_state_entering_tick = millis();
+    _FSM_Owner->battle_state_remain_ms = EXCITED_STATE_LAST - (millis() - _FSM_Owner->battle_state_entering_tick);
 }
 void ElectronExcitedState::Execute(GameController* _FSM_Owner)
 {

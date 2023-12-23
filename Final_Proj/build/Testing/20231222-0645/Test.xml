@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Site BuildName="Linux-clang++"
+<Site BuildName="Linux-arm-linux-gnueabihf-g++"
 	BuildStamp="20231222-0645-Experimental"
 	Name="raspberrypi"
 	Generator="ctest-3.18.4"
-	CompilerName="/usr/bin/clang++"
-	CompilerVersion="11.0.1"
+	CompilerName="/usr/bin/arm-linux-gnueabihf-g++"
+	CompilerVersion="10.2.1"
 	OSName="Linux"
 	Hostname="raspberrypi"
 	OSRelease="6.1.21-v8+"
@@ -24,11 +24,11 @@
 	ProcessorClockFrequency="0"
 	>
 	<Testing>
-		<StartDateTime>Dec 22 03:08 HST</StartDateTime>
-		<StartTestTime>1703250505</StartTestTime>
+		<StartDateTime>Dec 22 06:53 HST</StartDateTime>
+		<StartTestTime>1703264003</StartTestTime>
 		<TestList/>
-		<EndDateTime>Dec 22 03:08 HST</EndDateTime>
-		<EndTestTime>1703250505</EndTestTime>
+		<EndDateTime>Dec 22 06:53 HST</EndDateTime>
+		<EndTestTime>1703264003</EndTestTime>
 		<ElapsedMinutes>0</ElapsedMinutes>
 	</Testing>
 </Site>

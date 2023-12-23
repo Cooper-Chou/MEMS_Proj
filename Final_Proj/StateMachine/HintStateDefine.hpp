@@ -1,7 +1,7 @@
 #ifndef HintStateDefine_HPP
 #define HintStateDefine_HPP
 
-#include <State.hpp>
+#include "../../C_FSM/State.hpp"
 #include <stdint.h>
 #include <wiringPi.h>
 #include "../BSP/bsp.hpp"
@@ -16,7 +16,7 @@
 
 class GameController;
 
-void ledBlink(int _led_pin, unsigned int _blink_period, unsigned int _last_tick);
+void ledBlink(int _led_pin, int _blink_period, int _last_tick);
 
 class PeaceState : public State<GameController>
 {
@@ -57,8 +57,8 @@ class BattleState : public State<GameController>
             m_pInstance = nullptr;
         }
 
-        unsigned int led_blink_period;
-        unsigned int last_led_tick;
+        int led_blink_period;
+        int last_led_tick;
 
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);
@@ -88,9 +88,9 @@ class EndState : public State<GameController>
             m_pInstance = nullptr;
         }
 
-        unsigned int led_blink_period;
-        unsigned int last_led_tick_green;
-        unsigned int last_led_tick_winner;
+        int led_blink_period;
+        int last_led_tick_green;
+        int last_led_tick_winner;
 
         virtual void Init(GameController* _FSM_Owner);
         virtual void Enter(GameController* _FSM_Owner);

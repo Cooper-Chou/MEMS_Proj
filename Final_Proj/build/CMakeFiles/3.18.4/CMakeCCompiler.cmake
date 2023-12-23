@@ -1,7 +1,7 @@
-set(CMAKE_C_COMPILER "/usr/bin/clang")
+set(CMAKE_C_COMPILER "/usr/bin/arm-linux-gnueabihf-gcc")
 set(CMAKE_C_COMPILER_ARG1 "")
-set(CMAKE_C_COMPILER_ID "Clang")
-set(CMAKE_C_COMPILER_VERSION "11.0.1")
+set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_VERSION "10.2.1")
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
@@ -12,19 +12,19 @@ set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")
 
 set(CMAKE_C_PLATFORM_ID "Linux")
 set(CMAKE_C_SIMULATE_ID "")
-set(CMAKE_C_COMPILER_FRONTEND_VARIANT "GNU")
+set(CMAKE_C_COMPILER_FRONTEND_VARIANT "")
 set(CMAKE_C_SIMULATE_VERSION "")
 
 
 
 
-set(CMAKE_AR "/usr/bin/ar")
-set(CMAKE_C_COMPILER_AR "/usr/lib/llvm-11/bin/llvm-ar")
-set(CMAKE_RANLIB "/usr/bin/ranlib")
-set(CMAKE_C_COMPILER_RANLIB "/usr/lib/llvm-11/bin/llvm-ranlib")
-set(CMAKE_LINKER "/usr/bin/ld")
+set(CMAKE_AR "/usr/bin/arm-linux-gnueabihf-ar")
+set(CMAKE_C_COMPILER_AR "/usr/bin/arm-linux-gnueabihf-gcc-ar-10")
+set(CMAKE_RANLIB "/usr/bin/arm-linux-gnueabihf-ranlib")
+set(CMAKE_C_COMPILER_RANLIB "/usr/bin/arm-linux-gnueabihf-gcc-ranlib-10")
+set(CMAKE_LINKER "/usr/bin/arm-linux-gnueabihf-ld")
 set(CMAKE_MT "")
-set(CMAKE_COMPILER_IS_GNUCC )
+set(CMAKE_COMPILER_IS_GNUCC 1)
 set(CMAKE_C_COMPILER_LOADED 1)
 set(CMAKE_C_COMPILER_WORKS TRUE)
 set(CMAKE_C_ABI_COMPILED TRUE)
@@ -46,9 +46,9 @@ set(CMAKE_C_IGNORE_EXTENSIONS h;H;o;O;obj;OBJ;def;DEF;rc;RC)
 set(CMAKE_C_LINKER_PREFERENCE 10)
 
 # Save compiler ABI information.
-set(CMAKE_C_SIZEOF_DATA_PTR "8")
+set(CMAKE_C_SIZEOF_DATA_PTR "4")
 set(CMAKE_C_COMPILER_ABI "ELF")
-set(CMAKE_C_LIBRARY_ARCHITECTURE "aarch64-linux-gnu")
+set(CMAKE_C_LIBRARY_ARCHITECTURE "arm-linux-gnueabihf")
 
 if(CMAKE_C_SIZEOF_DATA_PTR)
   set(CMAKE_SIZEOF_VOID_P "${CMAKE_C_SIZEOF_DATA_PTR}")
@@ -59,7 +59,7 @@ if(CMAKE_C_COMPILER_ABI)
 endif()
 
 if(CMAKE_C_LIBRARY_ARCHITECTURE)
-  set(CMAKE_LIBRARY_ARCHITECTURE "aarch64-linux-gnu")
+  set(CMAKE_LIBRARY_ARCHITECTURE "arm-linux-gnueabihf")
 endif()
 
 set(CMAKE_C_CL_SHOWINCLUDES_PREFIX "")
@@ -71,7 +71,7 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/home/cooper/MicroComProj/C_FSM;/usr/local/include;/usr/lib/llvm-11/lib/clang/11.0.1/include;/usr/include/aarch64-linux-gnu;/usr/include")
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/usr/lib/gcc/arm-linux-gnueabihf/10/include;/usr/local/include;/usr/include/arm-linux-gnueabihf;/usr/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/aarch64-linux-gnu/10;/usr/lib/aarch64-linux-gnu;/lib/aarch64-linux-gnu;/usr/lib;/usr/lib/llvm-11/lib;/lib")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/arm-linux-gnueabihf/10;/usr/lib/arm-linux-gnueabihf;/usr/lib;/lib/arm-linux-gnueabihf")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

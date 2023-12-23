@@ -18,8 +18,8 @@ enum IRReadingState
     //高电平 IDLE 之后只会出现 START 和 REPEAT!
 };
 
-unsigned int IR_digit_length_us = 0;
-unsigned int IR_last_us = 0;
+int IR_digit_length_us = 0;
+int IR_last_us = 0;
 IRReadingState IR_reading_state = WAITING_SIG;
 int IR_bit_count = 0;
 

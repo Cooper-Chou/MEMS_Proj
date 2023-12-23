@@ -14,7 +14,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/cooper/MicroComProj/Final_Proj/StateMachine/PhotonStateDefine.cpp" "/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles/GAME.dir/StateMachine/PhotonStateDefine.cpp.o"
   "/home/cooper/MicroComProj/Final_Proj/main.cpp" "/home/cooper/MicroComProj/Final_Proj/build/CMakeFiles/GAME.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

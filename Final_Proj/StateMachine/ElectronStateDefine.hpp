@@ -5,9 +5,9 @@
 #include "XonStateMachineDefine.hpp"
 
 #define EXCITED_STATE_LAST 7000 /* ms */
-#define EXC_X_VELO_COE 1.3f
-#define EXC_Y_VELO_COE 1.3f
-#define BATTLE_GND_MAX_VELO_COE 1.8f
+#define EXC_X_VELO_COE 1.5f
+#define EXC_Y_VELO_COE 1.5f
+#define BATTLE_GND_MAX_VELO_COE 2.0f
 #define EXC_IMPACT_RADIUS 7.0f
 #define GND_IMPACT_RADIUS 3.0f
 
@@ -15,6 +15,7 @@
 class ElectronGroundState : public XonState
 {
     public:
+    int m_random_num;
     //如果要将父类的纯虚函数实现, 就要在实现的那一级声明成虚函数!
     ElectronGroundState(Chartlet* _chartlet):XonState(_chartlet){}
     virtual void Init(GameController* _FSM_Owner);

@@ -15,16 +15,12 @@ void PhotonExistState::Enter(GameController* _FSM_Owner)
 
     //每次光子重新出现都要随机刷新在一个位置
     srand(state_entering_tick);
-    _FSM_Owner->photon.x_coor = rand() % MAP_WIDTH;
-    _FSM_Owner->photon.y_coor = rand() % MAP_HEIGHT;
+    _FSM_Owner->photon.x_coor = (int)rand() % MAP_WIDTH;
+    _FSM_Owner->photon.y_coor = (int)rand() % MAP_HEIGHT;
 }
 void PhotonExistState::Execute(GameController* _FSM_Owner)
 {
     state_remaining_ms = PHOTON_LAST_MS - (millis() - state_entering_tick);
-    if(state_remaining_ms <= 0)
-    {
-        _FSM_Owner->photon.ChangeState(&_FSM_Owner->photon.gone_state);
-    }
 }
 void PhotonExistState::Exit(GameController* _FSM_Owner)
 {
@@ -55,11 +51,6 @@ void PhotonGoneState::Execute(GameController* _FSM_Owner)
     else
     {
         state_remaining_ms = PHOTON_GONE_MS - (millis() - state_entering_tick);
-    }
-
-    if(state_remaining_ms <= 0)
-    {
-        _FSM_Owner->photon.ChangeState(&_FSM_Owner->photon.exist_state);
     }
 }
 void PhotonGoneState::Exit(GameController* _FSM_Owner)

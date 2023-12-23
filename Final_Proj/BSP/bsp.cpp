@@ -28,9 +28,12 @@ void bspInit()
 	pinMode(GPIO_BUTTON, INPUT);
 	pullUpDnControl(GPIO_BUTTON, PUD_OFF);
 
-    pinMode(GPIO_BEEP, PWM_OUTPUT); 
-	pwmSetClock(DIVISOR);
-	pwmSetMode(PWM_MODE_MS);
+	//傻逼树莓派一直tmd要sudo
+	/*----------------------------------*/
+    // pinMode(GPIO_BEEP, PWM_OUTPUT); 
+	// pwmSetClock(DIVISOR);
+	// pwmSetMode(PWM_MODE_MS);
+	/*----------------------------------*/
 
     pinMode(GPIO_IR, INPUT);
     wiringPiISR(GPIO_IR, INT_EDGE_FALLING, &IRhandleInput);
@@ -71,9 +74,9 @@ float bspReadBarVolt(int _barPort)
 
 void bspSetFreq(int _freq)
 {
-	int range = 19200000/DIVISOR/_freq;
-	pwmSetRange(range);
-	pwmWrite(GPIO_BEEP, range/2);
+	// int range = 19200000/DIVISOR/_freq;
+	// pwmSetRange(range);
+	// pwmWrite(GPIO_BEEP, range/2);
 }
 
 int bspReadIR()
