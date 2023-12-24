@@ -2,25 +2,21 @@
 #include "../BSP/bsp.hpp"
 #include <wiringPi.h>
 #include "../GameComponent/MATH.h"
+#include "XonStateMachineDefine.hpp"
 
 void GameController::Update()
 {
     last_tick = millis();
+    shader.RefreshMap();
 
     //先让红蓝方吃完buff
-    red_electron.HandleInput();
     blue_electron.HandleInput();
+    red_electron.HandleInput();
+    photon.HandleInput();
 
+    photon.Update();
     red_electron.Update();
     blue_electron.Update();
-
-    photon.HandleInput();
-    photon.Update();
-
-    if(game_state == GameState::PEACE)
-    {
-        game_state_color = Color::NO_COLOR;
-    }
 
     if(game_state == GameState::BATTLE)
     {
@@ -36,10 +32,16 @@ void GameController::Update()
         //然后遍历所有电子，由于同一时间只能有一个进攻方，所以只要有与进攻方相撞的，即判进攻方获胜
         for(int i = 0; i < Color::COLOR_NUM; i++)
         {
-            if(ImpactOverlap(p_attacker,electron_p_list[i]))
+            for(int j = i + 1; j < Color::COLOR_NUM; j++)
             {
-                game_state = GameState::END;
-                game_state_color = p_attacker->color;
+                if(ImpactOverlap(electron_p_list[i],electron_p_list[j]))
+                {
+                    if(electron_p_list[i] == p_attacker || electron_p_list[j] == p_attacker)
+                    {
+                        game_state = GameState::END;
+                        game_state_color = p_attacker->color;
+                    }
+                }
             }
         }
     }
@@ -61,7 +63,8 @@ void RedElectron::HandleInput()
     y_coor = modulus<int>(y_coor, MAP_HEIGHT);
 
     printf("overlap state = %d\nx_coor_1 = %d, y_coor_1 = %d\nx_coor_2 = %d, y_coor_2 = %d\n",ImpactOverlap(this, &p_FSM_owner->blue_electron),this->x_coor,this->y_coor,p_FSM_owner->blue_electron.x_coor,p_FSM_owner->blue_electron.y_coor);
-    printf("Overlap state = %d, photon state = %d\n",ImpactOverlap(this, &p_FSM_owner->photon),p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state);
+    printf("Game State = %d\n",p_FSM_owner->game_state);
+    //printf("Overlap state = %d, photon state = %d\n",ImpactOverlap(this, &p_FSM_owner->photon),p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state);
     if(ImpactOverlap(this, &p_FSM_owner->photon) && p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state)
     {
         p_FSM_owner->game_state_color = color;
@@ -69,7 +72,6 @@ void RedElectron::HandleInput()
         //如果当前状态是激发态，那么就重置激发态的计时器
         if(p_current_state == &excited_state)
         {
-            p_FSM_owner->game_state_color = color;
             p_FSM_owner->battle_state_entering_tick = millis();
         }
         else
@@ -94,7 +96,7 @@ void RedElectron::HandleInput()
     //战斗状态时的基态电子需要额外渲染一下加速的方向
     if(p_FSM_owner->game_state == GameState::BATTLE && p_current_state == &ground_state)
     {
-        p_FSM_owner->shader.AppendElement(x_coor, y_coor, battle_hint_aprnc, battle_hint_Xofst[ground_state.m_random_num - 4], battle_hint_Yofst[ground_state.m_random_num - 4], 2);
+        p_FSM_owner->shader.AppendElement(x_coor, y_coor, battle_hint_aprnc, battle_hint_Xofst[ground_state.m_random_num], battle_hint_Yofst[ground_state.m_random_num], 2);
     }
 }
 
@@ -114,7 +116,6 @@ void BlueElectron::HandleInput()
         //如果当前状态是激发态，那么就重置激发态的计时器
         if(p_current_state == &excited_state)
         {
-            p_FSM_owner->game_state_color = color;
             p_FSM_owner->battle_state_entering_tick = millis();
         }
         else
@@ -136,10 +137,11 @@ void BlueElectron::HandleInput()
         ChangeState(&ground_state);
     }
     
+    printf("Knowing battle = %d, ground state = %d\n", p_FSM_owner->game_state == GameState::BATTLE, p_current_state == &ground_state);
     //战斗状态时的基态电子需要额外渲染一下加速的方向
     if(p_FSM_owner->game_state == GameState::BATTLE && p_current_state == &ground_state)
     {
-        p_FSM_owner->shader.AppendElement(x_coor, y_coor, battle_hint_aprnc, battle_hint_Xofst[ground_state.m_random_num - 4], battle_hint_Yofst[ground_state.m_random_num - 4], 2);
+        p_FSM_owner->shader.AppendElement(x_coor, y_coor, battle_hint_aprnc, battle_hint_Xofst[ground_state.m_random_num], battle_hint_Yofst[ground_state.m_random_num], 2);
     }
 }
 

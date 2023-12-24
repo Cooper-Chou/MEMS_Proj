@@ -71,8 +71,6 @@ void Shader::Init()
 
 void Shader::Shade(GameController* _p_controller)
 {
-    RefreshMap();
-
     for(int i = 0; i < Color::COLOR_NUM + PHOTON_NUM; i++)
     {
         for(int j = 0; j < _p_controller->shading_xon_p_list[i]->GetPCurrentState()->p_chartlet->length; j++)

@@ -8,7 +8,7 @@
 #define EXC_X_VELO_COE 1.5f
 #define EXC_Y_VELO_COE 1.5f
 #define BATTLE_GND_MAX_VELO_COE 2.0f
-#define EXC_IMPACT_RADIUS 7.0f
+#define EXC_IMPACT_RADIUS 6.5f
 #define GND_IMPACT_RADIUS 3.0f
 
 

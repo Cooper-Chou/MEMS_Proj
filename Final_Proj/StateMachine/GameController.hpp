@@ -53,7 +53,7 @@ public:
         ground_state(p_gnd_aprnc_2), excited_state(p_exc_aprnc_2) {}
 
   void Init() override;
-  void HandleInput() override; // is this a leaf or inner node
+  void HandleInput() override;
 };
 
 class HintStateMachine : public StateMachine<GameController> {
@@ -93,6 +93,7 @@ public:
   int battle_state_entering_tick;
   int battle_state_remain_ms;
   int photon_absorbed_flag;
+  int peace_flag;
 
   HintStateMachine hint_state_machine;
   Photon photon;
@@ -113,7 +114,8 @@ public:
   GameController()
       : hint_state_machine(this), photon(this), game_state(GameState::PEACE),
         red_electron(this), blue_electron(this), Controller(),
-        photon_absorbed_flag(0) {
+        photon_absorbed_flag(0),peace_flag(1)
+  {
     this->Init();
   }
 

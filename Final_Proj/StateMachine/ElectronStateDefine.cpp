@@ -14,7 +14,7 @@ void ElectronGroundState::Enter(GameController* _FSM_Owner)
 void ElectronGroundState::Execute(GameController* _FSM_Owner)
 {
     srand(_FSM_Owner->battle_state_entering_tick); //以进入激发态的时间为种子
-    m_random_num = rand() % 8;
+    m_random_num = rand() % 4;
     //处于战斗状态的基态电子需要某个方向的额外加速
     if(_FSM_Owner->game_state == GameState::BATTLE)
     {
@@ -52,21 +52,18 @@ void ElectronExcitedState::Execute(GameController* _FSM_Owner)
 void ElectronExcitedState::Exit(GameController* _FSM_Owner)
 {
     _FSM_Owner->game_state = GameState::PEACE;
-    _FSM_Owner->battle_state_remain_ms = 0;
 }
 
 
-
+//TODO:这里的速度设置有点不对，不是想要的效果
 float x_velo_coe_list[] = 
     {
-        0.0f, sqrtf(BATTLE_GND_MAX_VELO_COE), BATTLE_GND_MAX_VELO_COE, sqrtf(BATTLE_GND_MAX_VELO_COE), 
-        0.0f, -sqrtf(BATTLE_GND_MAX_VELO_COE), -BATTLE_GND_MAX_VELO_COE, -sqrtf(BATTLE_GND_MAX_VELO_COE)
+        1.0f, sqrtf(BATTLE_GND_MAX_VELO_COE), BATTLE_GND_MAX_VELO_COE, sqrtf(BATTLE_GND_MAX_VELO_COE)
     };
 
 float y_velo_coe_list[] = 
     {
-        BATTLE_GND_MAX_VELO_COE, sqrtf(BATTLE_GND_MAX_VELO_COE), 0.0f, -sqrtf(BATTLE_GND_MAX_VELO_COE),
-        -BATTLE_GND_MAX_VELO_COE, -sqrtf(BATTLE_GND_MAX_VELO_COE), 0.0f, sqrtf(BATTLE_GND_MAX_VELO_COE)
+        BATTLE_GND_MAX_VELO_COE, sqrtf(BATTLE_GND_MAX_VELO_COE), 1.0f, sqrtf(BATTLE_GND_MAX_VELO_COE)
     };
 
 int GetRandomXVeloCoe(int _random_index)
