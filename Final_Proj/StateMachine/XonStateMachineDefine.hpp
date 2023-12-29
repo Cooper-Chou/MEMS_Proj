@@ -28,6 +28,8 @@ class XonState
     virtual void Enter(GameController* _FSM_Owner) = 0;
     virtual void Execute(GameController* _FSM_Owner) = 0;
     virtual void Exit(GameController* _FSM_Owner) = 0;
+    virtual void CalcXVeloCoe(GameController* _FSM_Owner, float _direct_angle) = 0;
+    virtual void CalcYVeloCoe(GameController* _FSM_Owner, float _direct_angle) = 0;
 };
 
 class Xon

@@ -1,2 +1,2 @@
-music: music.cpp bsp.cpp
-	g++ -o music music.cpp bsp.cpp -l wiringPi
+music: music.cpp bsp.cpp lyrics.hpp
+	g++ -o music music.cpp bsp.cpp lyrics.hpp -l wiringPi

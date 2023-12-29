@@ -62,6 +62,11 @@ class Music
 			}
 		}
 	}
+
+	void stop()
+	{
+		pwmWrite(GPIO_BEEP, 0);
+	}
 };
 extern int redWinSong[];
 

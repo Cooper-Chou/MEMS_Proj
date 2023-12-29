@@ -10,7 +10,7 @@
 #include "XonStateMachineDefine.hpp"
 
 #define MAX_LED_BLINK_PERIOD 800 /* ms */
-#define MIN_LED_BLINK_PERIOD 100 /* ms */
+#define MIN_LED_BLINK_PERIOD 50 /* ms */
 #define BEAT 300 /* ms */
 #define LED_BLINK_PERIOD_LEVEL 5 //LED闪烁频率分成五个档次
 
@@ -81,8 +81,8 @@ class EndState : public State<GameController>
         inline static EndState *m_pInstance;
 
     public:
-        Music *red_win_p_music;
-        Music *blue_win_p_music;
+        Music *p_red_win_music;
+        Music *p_blue_win_music;
         EndState()
         {
             m_pInstance = nullptr;

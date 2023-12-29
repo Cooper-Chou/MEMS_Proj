@@ -16,10 +16,13 @@
 #define RED_BAR_Y AI0
 #define BLUE_BAR_X AI3
 #define BLUE_BAR_Y AI2
+#define UP_SIG 24
+#define MID_SIG 28
+#define DOWN_SIG 82
 
 #define VCC 5.0f
 
-#define GPIO_IR 4
+#define GPIO_IR 5
 #define GPIO_RED 29
 #define GPIO_GREEN 28
 #define GPIO_BLUE 27
@@ -41,7 +44,7 @@ void bspLedOn(int _led_pin);
 void bspLedOff(int _led_pin);
 void bspLedToggle(int _led_pin);
 void bspSetFreq(int _freq);
-float bspReadBarVolt(int _barPort);
+float bspReadBarPerc(int _barPort);//读出来的范围在 +- 1.0
 int bspReadIR();
 
 template <class T>

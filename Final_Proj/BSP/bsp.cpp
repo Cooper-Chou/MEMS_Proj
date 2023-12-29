@@ -4,7 +4,6 @@
 #include <wiringPi.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <softPwm.h>
 #include <signal.h>
 #include "Infrared.hpp"
 
@@ -12,11 +11,7 @@
 
 void bspInit()
 {
-    //初始化连接失败时，将消息打印到屏幕
-	if(wiringPiSetup() == -1)
-	{
-		printf("setup wiringPi failed !\n");
-	}
+	wiringPiSetup();
 
 	pinMode(GPIO_RED, OUTPUT);
 	digitalWrite(GPIO_RED, LOW);
@@ -30,9 +25,9 @@ void bspInit()
 
 	//傻逼树莓派一直tmd要sudo
 	/*----------------------------------*/
-    // pinMode(GPIO_BEEP, PWM_OUTPUT); 
-	// pwmSetClock(DIVISOR);
-	// pwmSetMode(PWM_MODE_MS);
+    pinMode(GPIO_BEEP, PWM_OUTPUT); 
+	pwmSetClock(DIVISOR);
+	pwmSetMode(PWM_MODE_MS);
 	/*----------------------------------*/
 
     pinMode(GPIO_IR, INPUT);
@@ -67,19 +62,23 @@ void bspLedToggle(int _led_pin)
     }
 }
 
-float bspReadBarVolt(int _barPort)
+float bspReadBarPerc(int _barPort)
 {
-    return VCC * ((float)analogRead(_barPort)/255.0f);
+    return 2.0f*(0.5 - ((float)analogRead(_barPort)/255.0f));
 }
 
 void bspSetFreq(int _freq)
 {
-	// int range = 19200000/DIVISOR/_freq;
-	// pwmSetRange(range);
-	// pwmWrite(GPIO_BEEP, range/2);
+	// printf("SET FREQ: %d Hz!!\n", _freq);
+	int range = 19200000/DIVISOR/_freq;
+	pwmSetRange(range);
+	pwmWrite(GPIO_BEEP, range/2);
 }
 
 int bspReadIR()
 {
-	return IR_true_value;
+	//读完以后立刻清除数据，不然数据会一直存在这里
+	int temp = IR_true_value;
+	IR_true_value = 0;
+	return temp;
 }

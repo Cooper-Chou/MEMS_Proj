@@ -94,6 +94,9 @@ public:
   int battle_state_remain_ms;
   int photon_absorbed_flag;
   int peace_flag;
+  int end_flag;
+  int silent_flag;
+  int IR_true_vlaue;
 
   HintStateMachine hint_state_machine;
   Photon photon;
@@ -113,14 +116,15 @@ public:
 
   GameController()
       : hint_state_machine(this), photon(this), game_state(GameState::PEACE),
-        red_electron(this), blue_electron(this), Controller(),
-        photon_absorbed_flag(0),peace_flag(1)
+        red_electron(this), blue_electron(this), Controller(),end_flag(0),silent_flag(0),
+        photon_absorbed_flag(0),peace_flag(1),IR_true_vlaue(0)
   {
     this->Init();
   }
 
   void Init() override;
   void Update() override;
+  void Refresh();
 
   static GameController *GetInstance() {
     if (m_pInstance == nullptr) {

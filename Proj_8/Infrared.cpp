@@ -15,7 +15,7 @@
 #define CONVAS_WIDTH (232)
 #define CONVAS_HEIGHT (56)
 
-#define GPIO_IR 4
+#define GPIO_IR 5
 #define UP_SIG 24
 #define DN_SIG 82
 #define LF_SIG 8
@@ -183,6 +183,7 @@ int main()
 
 	while(1)
 	{
+		printf("%d\n",true_value);
 		if(millis() - count >= 100)
 		{
 			count = millis();
@@ -207,7 +208,7 @@ int main()
 				default:
 					break;
 				}
-				paint();
+				//paint();
 		}
 	}
 	return 0 ;

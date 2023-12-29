@@ -14,6 +14,8 @@ int main()
             last_tick = current_tick;
             GameController::GetInstance()->Update();
         }
+        
+        GameController::GetInstance()->hint_state_machine.Update(); 
     }
     return 0;
 }

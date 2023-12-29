@@ -20,6 +20,7 @@ void bspInit()
 
 void bspSetFreq(int _freq)
 {
+	printf("Set Freq!! ");
 	int range = 19200000/DIVISOR/_freq;
 	pwmSetRange(range);
 	pwmWrite(GPIO_BEEP, range/2);

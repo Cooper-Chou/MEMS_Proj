@@ -2,14 +2,15 @@
 #include <stdio.h>
 #include "lyrics.hpp"
 
-#define BEAT 300 /*ms*/
+#define BEAT 500 /*ms*/
 
 int main(void)
 {
 	bspInit();
 	printf("Song length = %d\n", songLength);
-	for (int i = 0; i < songLength; i++)
+	for(int i = 0;i < songLength;i++)	
 	{
+		printf("Note freq = %d Hz\n",MySong[i]);
 		bspSetFreq(MySong[i]);
 		delay(BEAT);
 	}

@@ -1,69 +1,97 @@
 #include "GameController.hpp"
 #include "../BSP/bsp.hpp"
+#include <cstdio>
 #include <wiringPi.h>
 #include "../GameComponent/MATH.h"
+#include "HintStateDefine.hpp"
 #include "XonStateMachineDefine.hpp"
+#include <cmath>
 
 void GameController::Update()
 {
     last_tick = millis();
-    shader.RefreshMap();
 
-    //先让红蓝方吃完buff
-    blue_electron.HandleInput();
-    red_electron.HandleInput();
-    photon.HandleInput();
-
-    photon.Update();
-    red_electron.Update();
-    blue_electron.Update();
-
-    if(game_state == GameState::BATTLE)
+    if(end_flag == 0)
     {
-        Xon *p_attacker = nullptr;
-        if(game_state_color == Color::RED)
+        shader.RefreshMap();
+
+        //先让红蓝方吃完buff
+        blue_electron.HandleInput();
+        red_electron.HandleInput();
+        photon.HandleInput();
+
+        photon.Update();
+        red_electron.Update();
+        blue_electron.Update();
+
+        shader.Shade(this);
+        shader.Display();
+
+        if(game_state == GameState::BATTLE)
         {
-            p_attacker = &red_electron;
-        }
-        else if(game_state_color == Color::BLUE)
-        {
-            p_attacker = &blue_electron;
-        }
-        //然后遍历所有电子，由于同一时间只能有一个进攻方，所以只要有与进攻方相撞的，即判进攻方获胜
-        for(int i = 0; i < Color::COLOR_NUM; i++)
-        {
-            for(int j = i + 1; j < Color::COLOR_NUM; j++)
+            Xon *p_attacker = nullptr;
+            if(game_state_color == Color::RED)
             {
-                if(ImpactOverlap(electron_p_list[i],electron_p_list[j]))
+                p_attacker = &red_electron;
+            }
+            else if(game_state_color == Color::BLUE)
+            {
+                p_attacker = &blue_electron;
+            }
+            //然后遍历所有电子，由于同一时间只能有一个进攻方，所以只要有与进攻方相撞的，即判进攻方获胜
+            for(int i = 0; i < Color::COLOR_NUM; i++)
+            {
+                for(int j = i + 1; j < Color::COLOR_NUM; j++)
                 {
-                    if(electron_p_list[i] == p_attacker || electron_p_list[j] == p_attacker)
+                    if(ImpactOverlap(electron_p_list[i],electron_p_list[j]))
                     {
-                        game_state = GameState::END;
-                        game_state_color = p_attacker->color;
+                        if(electron_p_list[i] == p_attacker || electron_p_list[j] == p_attacker)
+                        {
+                            end_flag = 1;
+                            game_state = GameState::END;
+                            game_state_color = p_attacker->color;
+                        }
                     }
                 }
             }
         }
     }
 
-    hint_state_machine.Update(); 
+    IR_true_vlaue = bspReadIR();
+    if(IR_true_vlaue == MID_SIG)
+    {
+        end_flag = 0;
+        Refresh();
+    }
+    else if(IR_true_vlaue == UP_SIG)
+    {
+        printf("Changed silent state!\n");
+        if(silent_flag == 0){silent_flag = 1;}
+        else{silent_flag = 0;}
+    }
 
-    shader.Shade(this);
-    shader.Display();
+    hint_state_machine.HandleInput();
 }
 
 
 void RedElectron::HandleInput()
 {
+    float direct_angle = std::acos(bspReadBarPerc(RED_BAR_Y)/sqrt(bspReadBarPerc(RED_BAR_X)*bspReadBarPerc(RED_BAR_X) + bspReadBarPerc(RED_BAR_Y)*bspReadBarPerc(RED_BAR_Y)));
+    // printf("RED: x = %f, y = %f   RED: x_coe = %f, y_coe = %f\n",bspReadBarPerc(RED_BAR_X), bspReadBarPerc(RED_BAR_Y), p_current_state->x_velo_coe, p_current_state->y_velo_coe);
+    // printf("RED: direct_angle = %f\n", direct_angle/3.1415926f*180.0f);
+    p_current_state->CalcXVeloCoe(p_FSM_owner, direct_angle);
+    p_current_state->CalcYVeloCoe(p_FSM_owner, direct_angle);
+
     //此处y坐标需要加负号处理，因为y轴方向和电压变化的关系与x轴是反过来的
-    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*(0.5f*VCC - bspReadBarVolt(RED_BAR_X)) / (0.5*VCC));
-	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*(0.5f*VCC - bspReadBarVolt(RED_BAR_Y)) / (0.5*VCC));
+    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*bspReadBarPerc(RED_BAR_X));
+	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*bspReadBarPerc(RED_BAR_Y));
+
     //此处需要取模，实现周期性效果，并且如果不取模会导致碰撞箱计算出错
     x_coor = modulus<int>(x_coor, MAP_WIDTH);
     y_coor = modulus<int>(y_coor, MAP_HEIGHT);
 
-    printf("overlap state = %d\nx_coor_1 = %d, y_coor_1 = %d\nx_coor_2 = %d, y_coor_2 = %d\n",ImpactOverlap(this, &p_FSM_owner->blue_electron),this->x_coor,this->y_coor,p_FSM_owner->blue_electron.x_coor,p_FSM_owner->blue_electron.y_coor);
-    printf("Game State = %d\n",p_FSM_owner->game_state);
+    // printf("overlap state = %d\nx_coor_1 = %d, y_coor_1 = %d\nx_coor_2 = %d, y_coor_2 = %d\n",ImpactOverlap(this, &p_FSM_owner->blue_electron),this->x_coor,this->y_coor,p_FSM_owner->blue_electron.x_coor,p_FSM_owner->blue_electron.y_coor);
+    // printf("Game State = %d\n",p_FSM_owner->game_state);
     //printf("Overlap state = %d, photon state = %d\n",ImpactOverlap(this, &p_FSM_owner->photon),p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state);
     if(ImpactOverlap(this, &p_FSM_owner->photon) && p_FSM_owner->photon.GetPCurrentState() == &p_FSM_owner->photon.exist_state)
     {
@@ -102,9 +130,16 @@ void RedElectron::HandleInput()
 
 void BlueElectron::HandleInput()
 {
+    float direct_angle = std::acos(bspReadBarPerc(BLUE_BAR_Y)/sqrt(bspReadBarPerc(BLUE_BAR_X)*bspReadBarPerc(BLUE_BAR_X) + bspReadBarPerc(BLUE_BAR_Y)*bspReadBarPerc(BLUE_BAR_Y)));
+    // printf("BLUE: x = %f, y = %f   BLUE: x_coe = %f, y_coe = %f\n",bspReadBarPerc(BLUE_BAR_X), bspReadBarPerc(BLUE_BAR_Y), p_current_state->x_velo_coe, p_current_state->y_velo_coe);
+    // printf("BLUE direct angle = %f\n",direct_angle/3.1415926f*180.0f);
+    p_current_state->CalcXVeloCoe(p_FSM_owner, direct_angle);
+    p_current_state->CalcYVeloCoe(p_FSM_owner, direct_angle);
+
     //此处y坐标需要加负号处理，因为y轴方向和电压变化的关系与x轴是反过来的
-    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*(0.5f*VCC - bspReadBarVolt(BLUE_BAR_X)) / (0.5*VCC));
-	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*(0.5f*VCC - bspReadBarVolt(BLUE_BAR_Y)) / (0.5*VCC));
+    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*bspReadBarPerc(BLUE_BAR_X));
+	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*bspReadBarPerc(BLUE_BAR_Y));
+
     //此处需要取模，实现周期性效果，并且如果不取模会导致碰撞箱计算出错
     x_coor = modulus<int>(x_coor, MAP_WIDTH);
     y_coor = modulus<int>(y_coor, MAP_HEIGHT);
@@ -137,7 +172,7 @@ void BlueElectron::HandleInput()
         ChangeState(&ground_state);
     }
     
-    printf("Knowing battle = %d, ground state = %d\n", p_FSM_owner->game_state == GameState::BATTLE, p_current_state == &ground_state);
+    // printf("Knowing battle = %d, ground state = %d\n", p_FSM_owner->game_state == GameState::BATTLE, p_current_state == &ground_state);
     //战斗状态时的基态电子需要额外渲染一下加速的方向
     if(p_FSM_owner->game_state == GameState::BATTLE && p_current_state == &ground_state)
     {
@@ -167,7 +202,7 @@ void HintStateMachine::HandleInput()
     {
         ChangeState(BattleState::GetInstance());
     }
-    else if(p_FSM_owner->game_state == GameState::END)
+    else if(p_FSM_owner->game_state == GameState::END || p_FSM_owner->end_flag == 1)
     {
         ChangeState(EndState::GetInstance());
     }
@@ -221,6 +256,18 @@ void GameController::Init()
     }
     shading_xon_p_list[Color::COLOR_NUM + PHOTON_NUM - 1] = &photon;
     shader.Init();
+    red_electron.SetInitCoor(MAP_WIDTH / 4, MAP_HEIGHT / 2);
+    blue_electron.SetInitCoor(3*MAP_WIDTH / 4, MAP_HEIGHT / 2);
+}
+
+void GameController::Refresh()
+{
+    last_tick = millis();
+    red_electron.ChangeState(&red_electron.ground_state);
+    blue_electron.ChangeState(&blue_electron.ground_state);
+    photon.ChangeState(&photon.exist_state);
+    hint_state_machine.ChangeState(PeaceState::GetInstance());
+    photon.SetInitCoor(MAP_WIDTH / 2, MAP_HEIGHT / 2);
     red_electron.SetInitCoor(MAP_WIDTH / 4, MAP_HEIGHT / 2);
     blue_electron.SetInitCoor(3*MAP_WIDTH / 4, MAP_HEIGHT / 2);
 }

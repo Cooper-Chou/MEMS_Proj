@@ -26,7 +26,22 @@ int redWinSongLength = 62;
 
 int blueWinSong[] = 
 {
-
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, SO_M, 
+	SO_M, DO_H, DO_H, XI_M, 
+	XI_M, MI_M, MI_M, RE_M, 
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, DO_H,
+	DO_H, DO_H, DO_H, XI_M, 
+	RE_H, RE_H, MI_M, MI_M, 
+	MI_M, MI_M, MI_M, RE_M,
+	MI_M, RE_M, MI_M, XI_M, 
+	XI_M, DO_H, DO_H, XI_M, 
+	XI_M, MI_M, MI_M, RE_M,
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, XI_M,
+	XI_M, DO_H, DO_H, RE_H,
+	RE_H, RE_H
 };
 
 int blueWinSongLength = 62;
@@ -35,7 +50,22 @@ int blueWinSongLength = 62;
 
 int battleSong[] = 
 {
-
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, SO_M, 
+	SO_M, DO_H, DO_H, XI_M, 
+	XI_M, MI_M, MI_M, RE_M, 
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, DO_H,
+	DO_H, DO_H, DO_H, XI_M, 
+	RE_H, RE_H, MI_M, MI_M, 
+	MI_M, MI_M, MI_M, RE_M,
+	MI_M, RE_M, MI_M, XI_M, 
+	XI_M, DO_H, DO_H, XI_M, 
+	XI_M, MI_M, MI_M, RE_M,
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, XI_M,
+	XI_M, DO_H, DO_H, RE_H,
+	RE_H, RE_H
 };
 
 int battleSongLength = 62;
@@ -44,7 +74,22 @@ int battleSongLength = 62;
 
 int peaceSong[] = 
 {
-
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, SO_M, 
+	SO_M, DO_H, DO_H, XI_M, 
+	XI_M, MI_M, MI_M, RE_M, 
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, DO_H,
+	DO_H, DO_H, DO_H, XI_M, 
+	RE_H, RE_H, MI_M, MI_M, 
+	MI_M, MI_M, MI_M, RE_M,
+	MI_M, RE_M, MI_M, XI_M, 
+	XI_M, DO_H, DO_H, XI_M, 
+	XI_M, MI_M, MI_M, RE_M,
+	MI_M, MI_M, MI_M, RE_M, 
+	MI_M, RE_M, MI_M, XI_M,
+	XI_M, DO_H, DO_H, RE_H,
+	RE_H, RE_H
 };
 
 int peaceSongLength = 62;
