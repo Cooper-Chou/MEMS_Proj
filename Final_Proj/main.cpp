@@ -5,8 +5,9 @@
 int main()
 {
     bspInit();
+    extern int break_flag;
     int last_tick = millis();
-    while(1)
+    while(break_flag == 0)
     {
         int current_tick = millis();
         if(current_tick - last_tick >= REFRESH_PERIOD)
@@ -17,5 +18,6 @@ int main()
         
         GameController::GetInstance()->hint_state_machine.Update(); 
     }
+    pwmWrite(GPIO_BEEP, 0);
     return 0;
 }

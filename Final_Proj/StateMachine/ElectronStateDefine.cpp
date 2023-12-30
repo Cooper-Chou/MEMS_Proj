@@ -56,13 +56,10 @@ void ElectronGroundState::CalcXVeloCoe(GameController* _FSM_Owner, float _direct
 {
     // printf("Accelerate angle = %f\n", accelerate_angle[m_random_num]/3.1415926f*180.0f);
     float angle_diff = _direct_angle - accelerate_angle[m_random_num];
-    // angle_diff = angle_diff > 0.0f ? angle_diff : angle_diff + M_PI;
     //处于战斗状态的基态电子需要某个方向的额外加速
-    //TODO:速度计算还是有问题
     if(_FSM_Owner->game_state == GameState::BATTLE)
     {
-        //此处绝对值是数学上的问题要求的
-        x_velo_coe = sinf(_direct_angle)*(0.5f*(BATTLE_GND_MAX_VELO_COE - 1.0f) * (cosf(angle_diff*2.0f) + 1.0f) + 1.0f);
+        x_velo_coe = fabs(sinf(_direct_angle)*(0.5f*(BATTLE_GND_MAX_VELO_COE - 1.0f) * (cosf(angle_diff*2.0f) + 1.0f) + 1.0f));
     }
     else
     {

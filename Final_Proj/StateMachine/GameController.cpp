@@ -7,6 +7,8 @@
 #include "XonStateMachineDefine.hpp"
 #include <cmath>
 
+int break_flag = 0;
+
 void GameController::Update()
 {
     last_tick = millis();
@@ -65,9 +67,13 @@ void GameController::Update()
     }
     else if(IR_true_vlaue == UP_SIG)
     {
-        printf("Changed silent state!\n");
+        // printf("Changed silent state!\n");
         if(silent_flag == 0){silent_flag = 1;}
         else{silent_flag = 0;}
+    }
+    else if(IR_true_vlaue == DOWN_SIG)
+    {
+        break_flag = 1;
     }
 
     hint_state_machine.HandleInput();
@@ -77,8 +83,10 @@ void GameController::Update()
 void RedElectron::HandleInput()
 {
     float direct_angle = std::acos(bspReadBarPerc(RED_BAR_Y)/sqrt(bspReadBarPerc(RED_BAR_X)*bspReadBarPerc(RED_BAR_X) + bspReadBarPerc(RED_BAR_Y)*bspReadBarPerc(RED_BAR_Y)));
+    direct_angle = bspReadBarPerc(RED_BAR_X)*direct_angle/fabs(bspReadBarPerc(RED_BAR_X));
     // printf("RED: x = %f, y = %f   RED: x_coe = %f, y_coe = %f\n",bspReadBarPerc(RED_BAR_X), bspReadBarPerc(RED_BAR_Y), p_current_state->x_velo_coe, p_current_state->y_velo_coe);
     // printf("RED: direct_angle = %f\n", direct_angle/3.1415926f*180.0f);
+    // printf("red x < 0 = %d\n", bspReadBarPerc(RED_BAR_X) < 0.0f);
     p_current_state->CalcXVeloCoe(p_FSM_owner, direct_angle);
     p_current_state->CalcYVeloCoe(p_FSM_owner, direct_angle);
 
@@ -131,6 +139,7 @@ void RedElectron::HandleInput()
 void BlueElectron::HandleInput()
 {
     float direct_angle = std::acos(bspReadBarPerc(BLUE_BAR_Y)/sqrt(bspReadBarPerc(BLUE_BAR_X)*bspReadBarPerc(BLUE_BAR_X) + bspReadBarPerc(BLUE_BAR_Y)*bspReadBarPerc(BLUE_BAR_Y)));
+    direct_angle = bspReadBarPerc(BLUE_BAR_X)*direct_angle/fabs(bspReadBarPerc(BLUE_BAR_X));
     // printf("BLUE: x = %f, y = %f   BLUE: x_coe = %f, y_coe = %f\n",bspReadBarPerc(BLUE_BAR_X), bspReadBarPerc(BLUE_BAR_Y), p_current_state->x_velo_coe, p_current_state->y_velo_coe);
     // printf("BLUE direct angle = %f\n",direct_angle/3.1415926f*180.0f);
     p_current_state->CalcXVeloCoe(p_FSM_owner, direct_angle);
