@@ -18,8 +18,8 @@
 #include <cmath>
 
 //此处的速度只是一个相对值，没有单位，只能 大了调小 小了调大 这样子
-#define X_DEFAULT_VELOCITY (100.0f / (float)REFRESH_PERIOD)
-#define Y_DEFAULT_VELOCITY (50.0f / (float)REFRESH_PERIOD)
+#define X_DEFAULT_VELOCITY (50.0f / (float)REFRESH_PERIOD)
+#define Y_DEFAULT_VELOCITY (X_DEFAULT_VELOCITY / 2.0f)
 
 #define PHOTON_NUM 1
 

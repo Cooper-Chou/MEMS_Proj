@@ -90,9 +90,8 @@ void RedElectron::HandleInput()
     p_current_state->CalcXVeloCoe(p_FSM_owner, direct_angle);
     p_current_state->CalcYVeloCoe(p_FSM_owner, direct_angle);
 
-    //此处y坐标需要加负号处理，因为y轴方向和电压变化的关系与x轴是反过来的
-    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*bspReadBarPerc(RED_BAR_X));
-	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*bspReadBarPerc(RED_BAR_Y));
+    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*3.0f*bspReadBarPerc(RED_BAR_X));
+	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*3.0f*bspReadBarPerc(RED_BAR_Y));
 
     //此处需要取模，实现周期性效果，并且如果不取模会导致碰撞箱计算出错
     x_coor = modulus<int>(x_coor, MAP_WIDTH);
@@ -145,9 +144,8 @@ void BlueElectron::HandleInput()
     p_current_state->CalcXVeloCoe(p_FSM_owner, direct_angle);
     p_current_state->CalcYVeloCoe(p_FSM_owner, direct_angle);
 
-    //此处y坐标需要加负号处理，因为y轴方向和电压变化的关系与x轴是反过来的
-    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*bspReadBarPerc(BLUE_BAR_X));
-	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*bspReadBarPerc(BLUE_BAR_Y));
+    x_coor += (int)((p_current_state->x_velo_coe*X_DEFAULT_VELOCITY)*3.0f*bspReadBarPerc(BLUE_BAR_X));
+	y_coor += (int)((p_current_state->y_velo_coe*Y_DEFAULT_VELOCITY)*3.0f*bspReadBarPerc(BLUE_BAR_Y));
 
     //此处需要取模，实现周期性效果，并且如果不取模会导致碰撞箱计算出错
     x_coor = modulus<int>(x_coor, MAP_WIDTH);
